@@ -1,0 +1,4 @@
+nbsphinx
+nbsphinx-link
+recommonmark
+sphinx_rtd_theme
