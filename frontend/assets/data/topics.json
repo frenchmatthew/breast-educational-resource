@@ -1,0 +1,114 @@
+{
+  "model": {
+    "title": "Template",
+    "heading": "Te Manawa",
+    "icon": "mdi-home",
+    "subTopics": {
+      "heart": {
+        "title": "Home",
+        "heading": "Heading",
+        "icon": "mdi-home-heart",
+        "dataFile": "heart-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "NoInfarct" }
+      }
+    }
+  },
+  "attack": {
+    "title": "Attack",
+    "heading": "Heart Attack",
+    "icon": "mdi-heart-broken",
+    "subTopics": {
+      "healthy": {
+        "title": "Healthy",
+        "heading": "Coronary Arteries",
+        "icon": "mdi-heart-pulse",
+        "dataFile": "attack-healthy",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "NoInfarct" }
+      },
+      "minor": {
+        "slug": "minor",
+        "title": "Minor",
+        "heading": "Minor",
+        "icon": "mdi-heart-half-full",
+        "dataFile": "attack-minor",
+        "category": "warning",
+        "subTitle": "subWarning",
+        "model": { "name": "SmallInfarct" }
+      },
+      "severe": {
+        "slug": "severe",
+        "title": "Severe",
+        "heading": "Severe",
+        "icon": "mdi-heart-minus",
+        "dataFile": "attack-severe",
+        "category": "error",
+        "subTitle": "subError",
+        "model": { "name": "LargeInfarct" }
+      }
+    }
+  },
+  "electricity": {
+    "title": "Electricity",
+    "heading": "Heart Electricity",
+    "icon": "mdi-lightning-bolt",
+    "subTopics": {
+      "healthy": {
+        "title": "Healthy",
+        "heading": "Electrocardiograms",
+        "icon": "mdi-battery-heart",
+        "dataFile": "electricity-healthy",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "NormalElectricity" }
+      },
+      "fibrillation": {
+        "slug": "fibrillation",
+        "title": "Fibrillation",
+        "heading": "Fibrillation",
+        "icon": "mdi-heart-flash",
+        "dataFile": "electricity-fibrillation",
+        "category": "error",
+        "subTitle": "subError",
+        "model": { "name": "ArrythmiaElectricity" }
+      }
+    }
+  },
+  "failure": {
+    "title": "Failure",
+    "heading": "Heart Failure",
+    "icon": "mdi-heart-off",
+    "subTopics": {
+      "healthy": {
+        "title": "Healthy",
+        "heading": "Chronic Problems",
+        "icon": "mdi-account-heart",
+        "dataFile": "failure-healthy",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "NoInfarct" }
+      },
+      "compensated": {
+        "title": "Compensated",
+        "heading": "Compensated",
+        "icon": "mdi-heart-cog",
+        "dataFile": "failure-compensated",
+        "category": "warning",
+        "subTitle": "subWarning",
+        "model": { "name": "CompensatedFailure" }
+      },
+      "decompensated": {
+        "title": "Decompensated",
+        "heading": "Decompensated",
+        "icon": "mdi-heart-remove",
+        "dataFile": "failure-decompensated",
+        "category": "error",
+        "subTitle": "subError",
+        "model": { "name": "DecompensatedFailure" }
+      }
+    }
+  }
+}
