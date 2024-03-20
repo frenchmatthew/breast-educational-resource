@@ -19,7 +19,7 @@ jobs:
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{secrets.MY_GITHUB_TOKEN}}
+          github_token: ${{secrets.BREAST_APP}}
           publish_dir: "./build"
           user_name: "LinkunGao"
           user_email: "gaolinkun123@gmail.com"
