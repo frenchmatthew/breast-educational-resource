@@ -25,6 +25,9 @@ p {
   flex-direction: row;
   // justify-content: space-around;
   align-items: center;
+  font-family: "Inria Sans", sans-serif;
+  font-weight: 600;
+  font-style: bold;
 }
 .md-notice {
   font-style: italic;
@@ -55,6 +58,7 @@ p {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 10px;
 }
 .topic-fibrillation-aed {
   display: flex;

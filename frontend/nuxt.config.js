@@ -30,10 +30,6 @@ export default {
         type: "image/x-icon",
         href: "/breast-app/favicon2.ico",
       },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Bad+Script&family=Raleway:wght@100;300&display=swap",
-      },
     ],
     meta: [
       { charset: "utf-8" },
@@ -45,14 +41,12 @@ export default {
       {
         hid: "description",
         name: "description",
-        content:
-          "An ABI Generic Web App Template",
+        content: "An ABI Generic Web App Template",
       },
       { name: "format-detection", content: "telephone=no" },
       {
         name: "keywords",
-        content:
-          "Your Key words",
+        content: "Your Key words",
       },
     ],
     script: [
@@ -113,9 +107,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios'
-  ],
+  modules: ["@nuxtjs/axios"],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -126,6 +118,7 @@ export default {
       dark: true,
       themes: {
         dark: {
+          background: "#f8cdd6",
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
           secondary: "#7d1e7d",
@@ -134,10 +127,9 @@ export default {
           subWarning: "#dede09",
           error: "#451306",
           subError: "#fc2400",
-          // success: "#558B2F",
-          // success: "#194b17",
-          success: "#162415",
-          subSuccess: "#27a425",
+          // left panel color
+          success: "#f1a5b5",
+          subSuccess: "#eb3175",
         },
       },
     },
@@ -159,7 +151,6 @@ export default {
         implementation: require("sass"),
       },
     },
-
   },
 
   target: "static",
@@ -169,16 +160,7 @@ export default {
     dir: "build",
     routes: [
       // Modify these routes, when you config your routes for app
-      "/model-heart",
-      "/model-heart#video-div",
-      "/attack-healthy",
-      "/attack-minor",
-      "/attack-severe",
-      "/electricity-healthy",
-      "/electricity-fibrillation",
-      "/failure-healthy",
-      "/failure-compensated",
-      "/failure-decompensated",
+      "/model-breast",
     ],
   },
 };

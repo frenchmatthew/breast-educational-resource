@@ -1,22 +1,14 @@
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime explicabo eveniet illum officia vero ab omnis iste, officiis similique voluptate voluptates accusantium nulla blanditiis commodi dignissimos deleniti aliquid culpa vitae.
+This is an interactive model of the interior of the normal breast healthy tissues
 
 <div class="topic-img-big">
-<img src="" alt="img/schematic1.png" width="90%" height="auto"/>
+<img src="img/breast.png" alt="" width="90%" height="auto"/>
 
 </div>
 
----
-As for the video, we need add a `data-play="video"` attribute.
-<span class="md-video md-mt" data-play="video">
-    <img id="healthy" src="" alt="image" class="video-icon"/>
-</span>
+Normal healthy breast tissue contains lobules, ducts, ligaments, adipose/fat and fibrous glandular tissue. The breast also has lymph nodes and a lymph drainage system and the muscular chest wall and ribs behind.
 
-<div class="text-container">
+Breast tissue is affected by hormones, during the menstrual cycle, pregnancy and after birth. The main hormones active through the menstrual cycle are oestrogen and progesterone.
 
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit cupiditate rerum omnis iure saepe corrupti explicabo, fuga, quas eum aliquam quod dolorum neque placeat cum consequuntur porro laboriosam, distinctio corporis.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ex iste tempora quidem doloribus, rem quis at quae unde, veritatis aliquam eum! Blanditiis, tempore? Accusamus est tenetur non sit eligendi!</p>
-</div>
+The breast can produce milk from the lobules, which travels via the ducts to the nipple when breastfeeding.
 
----
-
-<span class="md-notice"> Click through the tabs below to learn about various heart diseases.</span>
+A tumour in the breast can be benign (usually not life-threatening) or malignant (cancerous). Although a benign tumour may cause problems as it grows, it does not spread to other parts of the body. On the other hand, a malignant tumour does have the potential to grow and spread to form secondary tumours. When this happens, it's called advanced, metastatic or secondary breast cancer.
