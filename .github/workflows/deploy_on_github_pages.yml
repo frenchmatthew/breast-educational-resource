@@ -14,6 +14,7 @@ jobs:
         with:
           node-version: 16
       - run: cd ./frontend
+      - run: ls
       - run: yarn install
       - run: yarn generate:gh-pages
 
