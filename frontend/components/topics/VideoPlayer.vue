@@ -11,7 +11,7 @@
 
       <div id="outer-credits">
         <div class="credits flexbox">
-          <img src="@/assets/images/Annie-Jones.png" class="img-icon" />
+          <img src="" class="img-icon" />
           <div class="credit-button flexbox --vertical">
             <div class="annie-liz flexbox d-none d-sm-block">
               <span>{{ credits1 }} {{ credits2 }}</span>
@@ -28,7 +28,7 @@
               </v-btn>
             </div>
           </div>
-          <img src="@/assets/images/Liz-Broadbent.png" class="img-icon" />
+          <img src="" class="img-icon" />
         </div>
         <div class="pt-2 annie-liz flexbox d-sm-none">
           <span>{{ credits1 }}<br />{{ credits2 }}</span>
