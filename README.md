@@ -1,4 +1,4 @@
-# Web App Template
+# Breast APP
 
 [![Read the Docs][readthedocs]][readthedocs-url]
 
@@ -9,21 +9,13 @@
 - Clone template to PC
 
 ```sh
-git clone https://github.com/ABI-CTT-Group/web-app-template.git
-cd web-app-template
-```
-
-- Setup backend
-    - environemnt: python 3.9+
-```sh
-cd backend
-pip install -r requirements.txt
-uvicorn myapp:custom_app_instance --reload
+git clone https://github.com/ABI-CTT-Group/breast-app.git
+cd breast-app
 ```
 
 - Setup frontend
-    - Environment: node 16.14.0/16.16.0, yarn 1.22.19
-   - Download node via [nvm node manager](https://github.com/nvm-sh/nvm#installing-and-updating)
+  - Environment: node 16.14.0/16.16.0, yarn 1.22.19
+  - Download node via [nvm node manager](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 ```sh
 # install nodejs
@@ -53,8 +45,6 @@ yarn dev
 
 - put your data into static folder, then you can the data file path into your frontend code directly.
 
-
-
 [readthedocs]: https://img.shields.io/readthedocs/web-app-template
 [readthedocs-url]: https://web-app-template.readthedocs.io/en/latest/
 
@@ -66,7 +56,7 @@ You can write the docs with `reStructuredText` in .rst or `markdown`in .md forma
 cd docs
 # After you edit the docs, you want view it locally
 # windows
-./make html 
+./make html
 # mac or linux
 # make html
 
