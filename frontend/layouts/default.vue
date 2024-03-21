@@ -115,6 +115,8 @@ export default {
 <style scoped lang="scss">
 .root {
   user-select: none;
+  margin: 0;
+  padding: 0;
 }
 .loading {
   position: fixed;
