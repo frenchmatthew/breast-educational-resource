@@ -13,15 +13,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: pwd
+      - run: cd frontend && yarn install && yarn generate:gh-pages
       - run: ls
-      - run: cd frontend && pwd && ls
-      - run: yarn install
-      - run: yarn generate:gh-pages
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{secrets.BREAST_APP}}
-          publish_dir: "./build"
+          publish_dir: "./frontend/build"
           user_name: "LinkunGao"
           user_email: "gaolinkun123@gmail.com"
