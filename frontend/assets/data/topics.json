@@ -1,0 +1,36 @@
+{
+  "model": {
+    "title": "Home",
+    "heading": "Te Uma",
+    "icon": "mdi-home",
+    "subTopics": {
+      "breast": {
+        "title": "Home",
+        "heading": "The Breast",
+        "icon": "mdi-home-heart",
+        "dataFile": "heart-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "NoInfarct" }
+      }
+    }
+  },
+  "attack": {
+    "title": "Attack",
+    "heading": "Heart Attack",
+    "icon": "mdi-heart-broken",
+    "subTopics": {}
+  },
+  "electricity": {
+    "title": "Electricity",
+    "heading": "Heart Electricity",
+    "icon": "mdi-lightning-bolt",
+    "subTopics": {}
+  },
+  "failure": {
+    "title": "Failure",
+    "heading": "Heart Failure",
+    "icon": "mdi-heart-off",
+    "subTopics": {}
+  }
+}

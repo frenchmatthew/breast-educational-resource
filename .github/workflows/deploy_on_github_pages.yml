@@ -1,0 +1,24 @@
+name: Deploy from multiple branches
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: cd frontend && yarn install && yarn generate:gh-pages
+      - run: ls
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{secrets.BREAST_APP}}
+          publish_dir: "./frontend/build"
+          user_name: "LinkunGao"
+          user_email: "gaolinkun123@gmail.com"
