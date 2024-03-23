@@ -3,7 +3,7 @@
 <script>
 export default {
   middleware({ redirect }) {
-    return redirect("/model-heart");
+    return redirect("/model-breast");
   },
 };
 </script>

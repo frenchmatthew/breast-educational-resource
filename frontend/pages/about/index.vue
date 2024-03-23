@@ -7,23 +7,16 @@
     >
       <div class="pt-4 heading">
         <h3 class="heading__main">
-          Heart Mechanics Research at the Auckland Bioengineering Institute
+          Breast Cancer Research at the Auckland Bioengineering Institute
         </h3>
-        <div class="heading__sub">
+        <!-- <div class="heading__sub">
           Improving diagnosis and management of heart diseases<span
             v-if="$vuetify.breakpoint.mdAndUp"
             ><br
           /></span>
           using personalised biomechanics and image-driven computer modelling
-        </div>
+        </div> -->
       </div>
-      <iframe
-        class="researchVideo"
-        frameborder="0"
-        src="https://www.youtube.com/embed/FazkF5oQTU0?rel=0&amp;showinfo=0&autoplay=1"
-        allowfullscreen
-      >
-      </iframe>
     </div>
     <div
       v-if="section == 'team'"
@@ -39,10 +32,10 @@
         </div>
       </div>
       <div class="detail">
-        <img src="~assets/images/headshots.png" />
+        <!-- <img src="~assets/images/headshots.png" /> -->
       </div>
       <div class="detail">
-        <img src="~assets/images/funding-abi-medtech.png" />
+        <!-- <img src="~assets/images/funding-abi-medtech.png" /> -->
       </div>
     </div>
   </div>

@@ -1,14 +1,29 @@
+<<<<<<< HEAD
 # Breast App
+=======
+# Breast APP
+>>>>>>> main
 
 [![Read the Docs][readthedocs]][readthedocs-url]
 
 ## Setup Project
 
+<<<<<<< HEAD
 ### Setup App
+=======
+### With backend
+
+- Clone template to PC
+
+```sh
+git clone https://github.com/ABI-CTT-Group/breast-app.git
+cd breast-app
+```
+>>>>>>> main
 
 - Setup frontend
-    - Environment: node 16.14.0/16.16.0, yarn 1.22.19
-   - Download node via [nvm node manager](https://github.com/nvm-sh/nvm#installing-and-updating)
+  - Environment: node 16.14.0/16.16.0, yarn 1.22.19
+  - Download node via [nvm node manager](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 ```sh
 # install nodejs
@@ -27,7 +42,20 @@ yarn
 yarn dev
 ```
 
+<<<<<<< HEAD
 
+=======
+### Without backend
+
+- delete backend folder
+- modify code in frontend
+
+```sh
+# delete components/model/Model.vue async fetch() line 17 ~ 27
+```
+
+- put your data into static folder, then you can the data file path into your frontend code directly.
+>>>>>>> main
 
 [readthedocs]: https://img.shields.io/readthedocs/web-app-template
 [readthedocs-url]: https://web-app-template.readthedocs.io/en/latest/
@@ -40,7 +68,7 @@ You can write the docs with `reStructuredText` in .rst or `markdown`in .md forma
 cd docs
 # After you edit the docs, you want view it locally
 # windows
-./make html 
+./make html
 # mac or linux
 # make html
 

@@ -8,7 +8,7 @@
       :class="mdAndUp ? 'tracePanel-md' : 'tracePanel-sm'"
     >
       <div :class="mdAndUp ? 'trace-md' : 'trace-sm'">
-        <PanelControls/>
+        <PanelControls />
       </div>
       <div
         class="d-none d-md-flex justify-center"
@@ -25,26 +25,29 @@
 </template>
 
 <script>
-import PanelControls from '../model/PanelControls.vue';
+import PanelControls from "../model/PanelControls.vue";
 
 export default {
-    data() {
-        return {};
+  data() {
+    return {};
+  },
+  mounted() {
+    $nuxt.$emit(
+      "send-emitter-data",
+      "data in RightPanel.vue send to Model.vue"
+    );
+  },
+  computed: {
+    mdAndUp() {
+      return this.$vuetify.breakpoint.mdAndUp;
     },
-    mounted() {
-        $nuxt.$emit("send-emitter-data", "data in RightPanel.vue send to Model.vue");
-    },
-    computed: {
-        mdAndUp() {
-            return this.$vuetify.breakpoint.mdAndUp;
-        },
-    },
-    components: { PanelControls }
+  },
+  components: { PanelControls },
 };
 </script>
 
 <style scoped lang="scss">
-.parent{
+.parent {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -52,8 +55,7 @@ export default {
 .model-panel {
   // width: 100vw;
   // height: auto;
-  flex: 1; 
-  
+  flex: 1;
 }
 .model-rate {
   position: relative;

@@ -1,5 +1,5 @@
 {
-  "name": "Breast App",
+  "name": "Breast-App",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -32,5 +32,4 @@
     "sass": "^1.49.0",
     "sass-loader": "10.1.1"
   }
-  
 }
