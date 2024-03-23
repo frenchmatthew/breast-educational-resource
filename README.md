@@ -1,25 +1,10 @@
-<<<<<<< HEAD
-# Breast App
-=======
 # Breast APP
->>>>>>> main
 
 [![Read the Docs][readthedocs]][readthedocs-url]
 
 ## Setup Project
 
-<<<<<<< HEAD
 ### Setup App
-=======
-### With backend
-
-- Clone template to PC
-
-```sh
-git clone https://github.com/ABI-CTT-Group/breast-app.git
-cd breast-app
-```
->>>>>>> main
 
 - Setup frontend
   - Environment: node 16.14.0/16.16.0, yarn 1.22.19
@@ -41,21 +26,6 @@ yarn
 # run frontend
 yarn dev
 ```
-
-<<<<<<< HEAD
-
-=======
-### Without backend
-
-- delete backend folder
-- modify code in frontend
-
-```sh
-# delete components/model/Model.vue async fetch() line 17 ~ 27
-```
-
-- put your data into static folder, then you can the data file path into your frontend code directly.
->>>>>>> main
 
 [readthedocs]: https://img.shields.io/readthedocs/web-app-template
 [readthedocs-url]: https://web-app-template.readthedocs.io/en/latest/
