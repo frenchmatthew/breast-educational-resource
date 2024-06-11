@@ -41,7 +41,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "An ABI Breast App",
+        content: "Auckland Bioengineering Institute Breast Research App",
       },
       { name: "format-detection", content: "telephone=no" },
       {
