@@ -70,7 +70,6 @@ export default {
         // this.scene.controls.panSpeed = 3.0;
         this.baseRenderer.setCurrentScene(this.scene);
         this.scene.loadOBJ(model_url, (content) => {
-          console.log(content);
           const box = new this.THREE.Box3().setFromObject(content);
           const size = box.getSize(new this.THREE.Vector3()).length();
           const center = box.getCenter(new this.THREE.Vector3());
@@ -82,7 +81,7 @@ export default {
           content.renderOrder = 3;
           content.traverse((child) => {
             if (child.isMesh) {
-              child.material = new this.THREE.MeshBasicMaterial({
+              child.material = new this.THREE.MeshPhysicalMaterial({
                 side: this.THREE.DoubleSide,
                 transparent: true,
                 opacity: 0.4,
@@ -93,6 +92,9 @@ export default {
           });
         });
         this.scene.loadViewUrl(viewURL);
+        this.scene.updateBackground("#f8cdd6", "#f8cdd6");
+        this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
+        this.baseRenderer.updateEnvironment();
       }
       this.scene.onWindowResize();
     },
@@ -108,6 +110,6 @@ export default {
 
 <style scoped lang="scss">
 .model {
-  background-color: rgb(248 205 214) !important;
+  // background-color: rgb(248 205 214) !important;
 }
 </style>

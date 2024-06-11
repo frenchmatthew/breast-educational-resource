@@ -16,6 +16,10 @@
   @include gradient-bg($secondary-color-light, var(--v-secondary-base));
 }
 
+.bg-pink-success {
+  background: rgb(233, 125, 144);
+}
+
 .left-pane {
   position: relative;
 }

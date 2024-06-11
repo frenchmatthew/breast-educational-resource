@@ -41,7 +41,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "An ABI Generic Web App Template",
+        content: "An ABI Breast App",
       },
       { name: "format-detection", content: "telephone=no" },
       {
@@ -74,10 +74,10 @@ export default {
       prefix: "@/static",
     },
   ],
-  // server: {
-  //   // host: 'localhost', // default: localhost
-  //   // port: 3005 // default: 3000
-  // },
+  server: {
+    host: "localhost", // default: localhost
+    port: 3005, // default: 3000
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["@/assets/sass/global.scss", "@/assets/sass/base.scss"],

@@ -24,6 +24,7 @@
 
 <script>
 import { marked } from "marked";
+import LeftModel from "../model/LeftModel.vue";
 
 export default {
   name: "Panel",

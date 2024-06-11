@@ -5,8 +5,8 @@
     </div>
     <div v-if="$route.name == 'slug'">
       <!-- currentBg  -->
-      <div class="pa-4" :class="currentBg" tile :style="panelHeightStyle">
-        <lazy-panel />
+      <div :class="currentBg" tile :style="panelHeightStyle">
+        <LeftModel />
       </div>
     </div>
     <div v-if="$route.name == 'about'">
@@ -29,11 +29,15 @@ export default {
 
   computed: {
     currentBg() {
-      return this.$category() ? "bg-" + this.$category() : "bg-success";
+      // return this.$category() ? "bg-" + this.$category() : "bg-pink-success";
+      return "bg-pink-success";
     },
     panelHeightStyle() {
       if (this.$vuetify.breakpoint.mdAndUp) {
-        return { "min-height": this.panelHeight - 2 + "px" };
+        this.$nuxt.$emit("panel-height", this.panelHeight);
+        return {
+          "min-height": this.panelHeight - 2 + "px",
+        };
       } else return { height: "auto" };
     },
   },

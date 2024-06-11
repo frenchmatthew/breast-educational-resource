@@ -1,22 +1,18 @@
-body{
-  background-color:black;
-  @media #{map-get($display-breakpoints, 'lg-and-down')}
-  {
+body {
+  @media #{map-get($display-breakpoints, 'lg-and-down')} {
     font-size: 0.9rem;
-  } 
-  @media #{map-get($display-breakpoints, 'xl-only')}
-  {
+  }
+  @media #{map-get($display-breakpoints, 'xl-only')} {
     font-size: 1.3rem;
-  } 
+  }
 }
 
-
-a{
+a {
   text-decoration: none;
-  color:inherit;
+  color: inherit;
 }
 
-hr{
-  margin-top:0.2rem;
-  margin-bottom:0.2rem;
+hr {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }

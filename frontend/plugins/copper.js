@@ -11,7 +11,7 @@ const baseRenderer = new Copper.copperRenderer(container, {
   guiOpen,
   camera: true,
   performance: true,
-  alpha: true,
+  alpha: false,
   logarithmicDepthBuffer: true,
   light: false,
   controls: "copper3d",
@@ -23,13 +23,13 @@ export default (context, inject) => {
   inject("baseRenderer", () => {
     return baseRenderer;
   }),
-  inject("baseContainer", () => {
-    return container;
-  }),
-  inject("three", () => {
-    return THREE;
-  }),
-  inject("Copper", () => {
-    return Copper;
-  });
+    inject("baseContainer", () => {
+      return container;
+    }),
+    inject("three", () => {
+      return THREE;
+    }),
+    inject("Copper", () => {
+      return Copper;
+    });
 };
