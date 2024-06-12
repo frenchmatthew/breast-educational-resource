@@ -13,6 +13,7 @@ export default {
       Copper: null,
       THREE: null,
       baseRenderer: null,
+      baseContainer: null,
       panelStyle: null,
       model_panel: null,
       model_title: null,
@@ -30,11 +31,21 @@ export default {
   mounted() {
     this.Copper = this.$Copper();
     this.THREE = this.$three();
+    this.baseRenderer = this.$baseLeftRenderer();
+    this.baseContainer = this.$baseLeftContainer();
+    this.container = this.$refs.leftContainer;
+
+    this.container.appendChild(this.baseContainer);
+
     this.$nuxt.$on("panel-height", this.setupPanelHeight);
+    this.model_panel = "model_name";
+    this.model_title = "model_title";
+
+    this.start();
 
     window.addEventListener("resize", () => {
       setTimeout(() => {
-        if(!!this.scene) this.scene.onWindowResize();
+        if (!!this.scene) this.scene.onWindowResize();
       }, 500);
     });
   },
@@ -49,27 +60,12 @@ export default {
       this.model_title = "model_title";
       if (h > 0) {
         setTimeout(() => {
-          this.baseRenderer = new this.Copper.copperRenderer(
-            this.$refs.leftContainer,
-            {
-              guiOpen: false,
-              alpha: false,
-              cameraGui: true,
-              performance: true,
-              logarithmicDepthBuffer: true,
-              light: false,
-              controls: "copper3d",
-            }
-          );
-          this.baseRenderer.animate();
           this.start();
         }, 500);
       }
     },
     start() {
-      // console.log(this.baseRenderer);
       this.loadModel("modelView/breast-l.glb", "breastmodel");
-      // this.loadModel("modelView/prone_surface.obj", "breastmodel");
     },
 
     loadModel(model_url, model_name) {
@@ -111,6 +107,7 @@ export default {
 
   beforeDestroy() {
     // Wirte code before destory this component
+    this.container.removeChild(this.baseContainer);
   },
 };
 </script>

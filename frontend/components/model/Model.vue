@@ -36,6 +36,7 @@ export default {
     this.THREE = this.$three();
     const baseContainer = this.$baseContainer();
     this.container = this.$refs.baseDomObject;
+
     setTimeout(() => {
       this.mdAndUp
         ? (baseContainer.style.height = "100vh")
@@ -49,6 +50,7 @@ export default {
         this.mdAndUp
           ? (baseContainer.style.height = "100vh")
           : (baseContainer.style.height = "100vw");
+
         this.scene.onWindowResize();
       }, 500);
     });
@@ -56,13 +58,13 @@ export default {
 
   methods: {
     async start() {
-      this.loadNrrd("modelView/breast_14.nrrd", "breastmodel")
+      this.loadNrrd("modelView/breast_14.nrrd", "breastnrrd");
       this.loadModel("modelView/prone_surface.obj");
     },
 
-    loadNrrd(nrrdUrl,  modelName){
+    loadNrrd(nrrdUrl, modelName) {
       const viewURL = "modelView/noInfarct_view.json";
-      const loadBar1 = this.Copper.loading("~assets/images/loading.svg");
+      const loadBar1 = this.Copper.loading("loading/loading.svg");
 
       this.scene = this.baseRenderer.getSceneByName(modelName);
       if (this.scene === undefined) {
@@ -71,15 +73,16 @@ export default {
         // this.scene.controls.rotateSpeed = 3.0;
         this.scene.controls.panSpeed = 0.5;
         this.baseRenderer.setCurrentScene(this.scene);
-        
+
         this.scene.loadNrrd(
-            nrrdUrl,
-            loadBar1,
-            true,
-            (volume, nrrdMesh, nrrdSlices, gui)=>{
-              this.scene.addObject(nrrdMesh.z);
-            },
-            {openGui: false});
+          nrrdUrl,
+          loadBar1,
+          true,
+          (volume, nrrdMesh, nrrdSlices, gui) => {
+            this.scene.addObject(nrrdMesh.z);
+          },
+          { openGui: false }
+        );
 
         this.scene.loadViewUrl(viewURL);
         this.scene.updateBackground("#f8cdd6", "#f8cdd6");
@@ -90,7 +93,7 @@ export default {
     },
 
     loadModel(model_url) {
-        this.scene.loadOBJ(model_url, (content) => {
+      this.scene.loadOBJ(model_url, (content) => {
         const box = new this.THREE.Box3().setFromObject(content);
         const size = box.getSize(new this.THREE.Vector3()).length();
         const center = box.getCenter(new this.THREE.Vector3());
@@ -107,7 +110,7 @@ export default {
               transparent: true,
               opacity: 0.4,
               color: "#a3932a",
-              wireframe: true,
+              wireframe: false,
             });
           }
         });

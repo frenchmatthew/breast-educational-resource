@@ -19,12 +19,33 @@ const baseRenderer = new Copper.copperRenderer(container, {
 if (guiOpen) baseRenderer.gui.closed = true;
 baseRenderer.animate();
 
+const leftContainer = document.createElement("div");
+leftContainer.style.width = "100%";
+leftContainer.style.height = "100%";
+
+const baseLeftRenderer = new Copper.copperRenderer(leftContainer, {
+  guiOpen: false,
+  alpha: false,
+  cameraGui: true,
+  performance: true,
+  logarithmicDepthBuffer: true,
+  light: false,
+  controls: "copper3d",
+});
+baseLeftRenderer.animate();
+
 export default (context, inject) => {
   inject("baseRenderer", () => {
     return baseRenderer;
   }),
     inject("baseContainer", () => {
       return container;
+    }),
+    inject("baseLeftRenderer", () => {
+      return baseLeftRenderer;
+    }),
+    inject("baseLeftContainer", () => {
+      return leftContainer;
     }),
     inject("three", () => {
       return THREE;
