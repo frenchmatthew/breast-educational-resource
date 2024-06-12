@@ -37,7 +37,7 @@ export default {
     flex-direction: column;
     padding: 20px 0;
     img {
-      width: 200px;
+      width: 15vw;
       height: auto;
     }
   }
