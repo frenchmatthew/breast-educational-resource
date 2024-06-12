@@ -1,7 +1,8 @@
 body {
   margin: 0 !important;
   padding: 0 !important;
-  background-color: rgb(248 205 214) !important;
+  // background-color: rgb(248 205 214) !important;
+  background-color: #f8cdd6;
 }
 
 canvas {
@@ -59,17 +60,17 @@ canvas {
   padding: 3rem;
 }
 
-//Custom Scrollbar - For Webkit browsers
-::-webkit-scrollbar {
-  width: 3px; /* width of the entire scrollbar */
-}
+// //Custom Scrollbar - For Webkit browsers
+// ::-webkit-scrollbar {
+//   width: 3px; /* width of the entire scrollbar */
+// }
 
-::-webkit-scrollbar-track {
-  background: inherit; /* color of the tracking area */
-}
+// ::-webkit-scrollbar-track {
+//   background: inherit; /* color of the tracking area */
+// }
 
-::-webkit-scrollbar-thumb {
-  background-color: transparent; /* color of the scroll thumb */
-  border-radius: 20px; /* roundness of the scroll thumb */
-  border: 1px solid transparent; /* creates padding around scroll thumb */
-}
+// ::-webkit-scrollbar-thumb {
+//   background-color: transparent; /* color of the scroll thumb */
+//   border-radius: 20px; /* roundness of the scroll thumb */
+//   border: 1px solid transparent; /* creates padding around scroll thumb */
+// }

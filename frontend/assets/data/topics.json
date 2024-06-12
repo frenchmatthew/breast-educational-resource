@@ -8,29 +8,59 @@
         "title": "Home",
         "heading": "The Breast",
         "icon": "mdi-home-heart",
-        "dataFile": "heart-main",
+        "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
         "model": { "name": "NoInfarct" }
       }
     }
   },
-  "attack": {
-    "title": "Attack",
-    "heading": "Heart Attack",
+  "density": {
+    "title": "Density",
+    "heading": "Breast Density",
     "icon": "mdi-heart-broken",
-    "subTopics": {}
+    "subTopics": {
+      "breast": {
+        "title": "Breast Density",
+        "heading": "The Breast",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-density",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "NoInfarct" }
+      }
+    }
   },
-  "electricity": {
-    "title": "Electricity",
-    "heading": "Heart Electricity",
+  "benign": {
+    "title": "B.C.",
+    "heading": "Breast Benign Conditions",
     "icon": "mdi-lightning-bolt",
-    "subTopics": {}
+    "subTopics": {
+      "conditions": {
+        "title": "Breast Benign Conditions",
+        "heading": "The Breast",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-density",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "NoInfarct" }
+      }
+    }
   },
-  "failure": {
-    "title": "Failure",
-    "heading": "Heart Failure",
+  "cancer": {
+    "title": "Cancer",
+    "heading": "Breast Cancer",
     "icon": "mdi-heart-off",
-    "subTopics": {}
+    "subTopics": {
+      "breast": {
+        "title": "Breast Cancer",
+        "heading": "The Breast Cancer",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-density",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "NoInfarct" }
+      }
+    }
   }
 }

@@ -97,7 +97,7 @@ export default {
 
   created() {
     console.log(
-      "%cABI Generic Web App Template %cBeta:v0.0.1",
+      "%cABI Breast App %cBeta:v1.0.0",
       "padding: 3px;color:white; background:#023047",
       "padding: 3px;color:white; background:#219EBC"
     );
