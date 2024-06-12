@@ -34,7 +34,7 @@ export default {
 
     window.addEventListener("resize", () => {
       setTimeout(() => {
-        this.scene.onWindowResize();
+        if(!!this.scene) this.scene.onWindowResize();
       }, 500);
     });
   },

@@ -20,15 +20,6 @@
     "heading": "Breast Density",
     "icon": "mdi-heart-broken",
     "subTopics": {
-      "breast": {
-        "title": "Breast Density",
-        "heading": "The Breast",
-        "icon": "mdi-home-heart",
-        "dataFile": "breast-density",
-        "category": "success",
-        "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
-      }
     }
   },
   "benign": {
@@ -36,15 +27,6 @@
     "heading": "Breast Benign Conditions",
     "icon": "mdi-lightning-bolt",
     "subTopics": {
-      "conditions": {
-        "title": "Breast Benign Conditions",
-        "heading": "The Breast",
-        "icon": "mdi-home-heart",
-        "dataFile": "breast-density",
-        "category": "success",
-        "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
-      }
     }
   },
   "cancer": {
@@ -52,15 +34,6 @@
     "heading": "Breast Cancer",
     "icon": "mdi-heart-off",
     "subTopics": {
-      "breast": {
-        "title": "Breast Cancer",
-        "heading": "The Breast Cancer",
-        "icon": "mdi-home-heart",
-        "dataFile": "breast-density",
-        "category": "success",
-        "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
-      }
     }
   }
 }
