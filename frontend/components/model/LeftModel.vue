@@ -34,7 +34,7 @@ export default {
 
     window.addEventListener("resize", () => {
       setTimeout(() => {
-        this.scene.onWindowResize();
+        if(!!this.scene) this.scene.onWindowResize();
       }, 500);
     });
   },
@@ -82,6 +82,7 @@ export default {
         // this.scene.controls.staticMoving = true;
         // this.scene.controls.rotateSpeed = 3.0;
         // this.scene.controls.panSpeed = 3.0;
+        this.scene.controls.panSpeed = 0.2;
         this.baseRenderer.setCurrentScene(this.scene);
 
         this.scene.loadGltf(model_url, (content) => {

@@ -26,7 +26,7 @@ export default {
 
 <style scoped lang="scss">
 .model-control {
-  padding-top: 120px;
+  padding-top: 80px;
   span {
     font-size: 1rem;
     font-weight: bold;
