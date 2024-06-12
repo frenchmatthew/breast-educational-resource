@@ -32,21 +32,9 @@
         <div class="mx-auto contributor" max-width="344">
           <v-card-text>
             <div class="text-h6 text--darken-6">Website Developers</div>
-            <div class="text--darken-4 pl-6">
-              Members Here <br />
-            </div>
+            <div class="text--darken-4 pl-6">Members Here <br /></div>
           </v-card-text>
         </div>
-        <v-select
-          v-model="select"
-          :items="items"
-          class="select"
-          label="Switch versions"
-          dense
-          color="#fff"
-          height="20px"
-          @change="onselectChange(select)"
-        ></v-select>
       </div>
     </div>
   </div>
@@ -70,17 +58,6 @@ export default {
       this.teamSelected = !this.teamSelected;
       this.researchSelected = !this.researchSelected;
       $nuxt.$emit("about-navigation", componentName);
-    },
-    onselectChange(select) {
-      if (select === "latest")
-        window.location.href =
-          "https://uoa-heart-mechanics-research.github.io/medtech-heart/";
-      if (select === "version 2.0")
-        window.location.href =
-          "https://uoa-heart-mechanics-research.github.io/medtech-heart/v2/";
-      if (select === "version 1.0")
-        window.location.href =
-          "https://uoa-heart-mechanics-research.github.io/medtech-heart/v1/";
     },
   },
 };
