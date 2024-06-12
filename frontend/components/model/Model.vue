@@ -56,46 +56,62 @@ export default {
 
   methods: {
     async start() {
-      this.loadModel("modelView/prone_surface.obj", "breastmodel");
+      this.loadNrrd("modelView/breast_14.nrrd", "breastmodel")
+      this.loadModel("modelView/prone_surface.obj");
     },
 
-    loadModel(model_url, model_name) {
+    loadNrrd(nrrdUrl,  modelName){
       const viewURL = "modelView/noInfarct_view.json";
+      const loadBar1 = this.Copper.loading("~assets/images/loading.svg");
 
-      this.scene = this.baseRenderer.getSceneByName(model_name);
+      this.scene = this.baseRenderer.getSceneByName(modelName);
       if (this.scene === undefined) {
-        this.scene = this.baseRenderer.createScene(model_name);
+        this.scene = this.baseRenderer.createScene(modelName);
         // this.scene.controls.staticMoving = true;
         // this.scene.controls.rotateSpeed = 3.0;
-        // this.scene.controls.panSpeed = 3.0;
+        this.scene.controls.panSpeed = 0.5;
         this.baseRenderer.setCurrentScene(this.scene);
-        this.scene.loadOBJ(model_url, (content) => {
-          const box = new this.THREE.Box3().setFromObject(content);
-          const size = box.getSize(new this.THREE.Vector3()).length();
-          const center = box.getCenter(new this.THREE.Vector3());
+        
+        this.scene.loadNrrd(
+            nrrdUrl,
+            loadBar1,
+            true,
+            (volume, nrrdMesh, nrrdSlices, gui)=>{
+              this.scene.addObject(nrrdMesh.z);
+            },
+            {openGui: false});
 
-          content.position.x += content.position.x - center.x;
-          content.position.y += content.position.y - center.y;
-          content.position.z += content.position.z - center.z;
-
-          content.renderOrder = 3;
-          content.traverse((child) => {
-            if (child.isMesh) {
-              child.material = new this.THREE.MeshPhysicalMaterial({
-                side: this.THREE.DoubleSide,
-                transparent: true,
-                opacity: 0.4,
-                color: "#a3932a",
-                wireframe: true,
-              });
-            }
-          });
-        });
         this.scene.loadViewUrl(viewURL);
         this.scene.updateBackground("#f8cdd6", "#f8cdd6");
         this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
         this.baseRenderer.updateEnvironment();
       }
+      this.scene.onWindowResize();
+    },
+
+    loadModel(model_url) {
+        this.scene.loadOBJ(model_url, (content) => {
+        const box = new this.THREE.Box3().setFromObject(content);
+        const size = box.getSize(new this.THREE.Vector3()).length();
+        const center = box.getCenter(new this.THREE.Vector3());
+
+        content.position.x += content.position.x - center.x;
+        content.position.y += content.position.y - center.y;
+        content.position.z += content.position.z - center.z;
+
+        content.renderOrder = 3;
+        content.traverse((child) => {
+          if (child.isMesh) {
+            child.material = new this.THREE.MeshPhysicalMaterial({
+              side: this.THREE.DoubleSide,
+              transparent: true,
+              opacity: 0.4,
+              color: "#a3932a",
+              wireframe: true,
+            });
+          }
+        });
+      });
       this.scene.onWindowResize();
     },
   },
