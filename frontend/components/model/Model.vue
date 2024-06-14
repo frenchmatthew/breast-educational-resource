@@ -12,9 +12,8 @@ export default {
       THREE: null,
       baseRenderer: null,
       container: null,
-      modelName: "Model load on here!",
-      helloworld: "",
-      model: null,
+      nrrdMaxIndex:-1,
+      nrrdSliceZ:null,
     };
   },
 
@@ -54,6 +53,29 @@ export default {
         this.scene.onWindowResize();
       }, 500);
     });
+
+    document.addEventListener('keydown', (event) => {
+
+        if (this.nrrdSliceZ == null) return;
+        const keyName = event.key;
+
+        if (keyName !== "ArrowUp" && keyName !== "ArrowDown"){
+          return;
+        }
+
+        let index = Math.ceil(this.nrrdSliceZ.index / this.nrrdSliceZ.volume.spacing[2]);
+
+        if(keyName==="ArrowUp"){
+          index += 1;
+          if (index > this.nrrdMaxIndex) index = this.nrrdMaxIndex;
+        }
+        if(keyName==="ArrowDown"){
+          index -= 1;
+          if (index < 0 ) index = 0;
+        }
+        this.nrrdSliceZ.index = index * this.nrrdSliceZ.volume.spacing[2];
+        this.nrrdSliceZ.repaint.call(this.nrrdSliceZ);
+    });
   },
 
   methods: {
@@ -87,6 +109,9 @@ export default {
             const x_bias = -(nrrdOrigin[0] * 2 + nrrdRas[0]) / 2;
             const y_bias = -(nrrdOrigin[1] * 2 + nrrdRas[1]) / 2;
             const z_bias = -(nrrdOrigin[2] * 2 + nrrdRas[2]) / 2;
+
+            this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
+            this.nrrdSliceZ = nrrdSlices.z;
 
             this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
             this.loadModel("modelView/prone.obj");
