@@ -116,7 +116,7 @@ export default {
             this.nrrdSliceZ = nrrdSlices.z;
 
             this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
-            this.loadModel("modelView/prone.obj");
+            this.loadModel("modelView/prone_surface.obj");
           },
           { openGui: false }
         );
