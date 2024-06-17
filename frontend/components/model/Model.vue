@@ -135,10 +135,10 @@ export default {
         const size = box.getSize(new this.THREE.Vector3()).length();
         const center = box.getCenter(new this.THREE.Vector3());
 
-        content.position.x += content.position.x - center.x;
-        content.position.y += content.position.y - center.y;
-        content.position.z += content.position.z - center.z;
-        // content.position.set(this.nrrdBias.x, this.nrrdBias.y, this.nrrdBias.z);
+        // content.position.x += content.position.x - center.x;
+        // content.position.y += content.position.y - center.y;
+        // content.position.z += content.position.z - center.z;
+        content.position.set(this.nrrdBias.x, this.nrrdBias.y, this.nrrdBias.z);
         content.renderOrder = 3;
         content.traverse((child) => {
           if (child.isMesh) {
