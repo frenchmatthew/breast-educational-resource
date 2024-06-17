@@ -14,6 +14,7 @@ export default {
       container: null,
       nrrdMaxIndex:-1,
       nrrdSliceZ:null,
+      nrrdMeshes: null
     };
   },
 
@@ -101,10 +102,11 @@ export default {
           loadBar1,
           true,
           (volume, nrrdMesh, nrrdSlices, gui) => {
+            this.nrrdMeshes = nrrdMesh;
             this.scene.addObject(nrrdMesh.z);
             const nrrdOrigin = volume.header.space_origin.map((num) => Number(num));
             const nrrdRas = volume.RASDimensions; 
-    
+            
 
             const x_bias = -(nrrdOrigin[0] * 2 + nrrdRas[0]) / 2;
             const y_bias = -(nrrdOrigin[1] * 2 + nrrdRas[1]) / 2;
@@ -133,10 +135,10 @@ export default {
         const size = box.getSize(new this.THREE.Vector3()).length();
         const center = box.getCenter(new this.THREE.Vector3());
 
-       // content.position.x += content.position.x - center.x;
-        //content.position.y += content.position.y - center.y;
-        //content.position.z += content.position.z - center.z;
-        content.position.set(this.nrrdBias.x, this.nrrdBias.y, this.nrrdBias.z);
+        content.position.x += content.position.x - center.x;
+        content.position.y += content.position.y - center.y;
+        content.position.z += content.position.z - center.z;
+        // content.position.set(this.nrrdBias.x, this.nrrdBias.y, this.nrrdBias.z);
         content.renderOrder = 3;
         content.traverse((child) => {
           if (child.isMesh) {
