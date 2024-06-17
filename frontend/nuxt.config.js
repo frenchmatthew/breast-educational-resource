@@ -6,7 +6,7 @@ const routerBase =
   process.env.DEPLOY_ENV === "GH_PAGES"
     ? {
         router: {
-          base: "/breast-app/",
+          base: "/breast-educational-resource/",
         },
       }
     : {
@@ -20,7 +20,7 @@ const routerBase =
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Breast App",
+    title: "Breast Educational Resource",
     htmlAttrs: {
       lang: "en",
     },
@@ -28,7 +28,7 @@ export default {
       {
         rel: "icon",
         type: "image/x-icon",
-        href: "/breast-app/favicon2.ico",
+        href: "/breast-educational-resource/favicon2.ico",
       },
     ],
     meta: [
