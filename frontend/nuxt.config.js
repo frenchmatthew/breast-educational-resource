@@ -104,7 +104,17 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     "@nuxtjs/vuetify",
+    "@nuxtjs/pwa"
   ],
+  pwa: {
+    manifest: {
+      name: 'Breast Educational Resource',
+      short_name: 'Breast Education App',
+      description: 'An ABI Education App for Breast Cancer.',
+      theme_color: '#ffffff',
+    },
+
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ["@nuxtjs/axios"],
