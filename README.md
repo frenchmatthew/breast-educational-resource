@@ -4,6 +4,8 @@
 
 ## Setup Project
 
+### Install with PWA
+
 ### Setup App
 
 - Setup frontend
