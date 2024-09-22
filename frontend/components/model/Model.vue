@@ -1,6 +1,26 @@
 <template>
   <div class="model">
+      <v-tabs class="fixed flex justify-center tab-main">
+        <v-tab class="tab-main">3D Mammogram</v-tab>
+        <v-tab class="tab-main">2D Mammogram</v-tab>
+      </v-tabs>
+    
     <div ref="baseDomObject" :class="mdAndUp ? 'baseDom-md' : 'baseDom-sm'" />
+    <div
+        ref="threeDControls"
+        class="baseModelControl"
+        :class="mdAndUp ? 'baseModelControl-md' : 'baseModelControl-sm'"
+      >
+        <div class="baseModelCB" :class="mdAndUp ? 'baseModelCB-md' : ''">
+          <button
+            class="absolute top-0 left-0 w-1/4 h-full hover:bg-zinc-700/30 rounded-lg"
+          />
+          <img
+            src="~/assets/images/gestures-icons.png"
+            class="h-full w-full md:object-contain"
+          />
+        </div>
+      </div>
   </div>
 </template>
 
@@ -165,7 +185,36 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.model {
-  // background-color: rgb(248 205 214) !important;
+.baseModelControl {
+  width: 100vw;
+  height: 120px;
+  // background: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  .baseModelCB {
+    width: 240px;
+    height: 70px;
+    position: relative;
+  }
+  .baseModelCB-md {
+    width: 280px;
+    height: 100px;
+  }
+}
+
+.baseModelControl-md {
+  position: fixed;
+  bottom: 10px;
+  padding-left: 100px;
+}
+.baseModelControl-sm {
+  order: -1;
+  height: 60px;
+}
+.tab-main{
+  background-color: #EF9BAA !important;
+  color: #000 !important;
 }
 </style>
