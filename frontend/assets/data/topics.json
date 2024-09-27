@@ -11,7 +11,7 @@
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
+        "model": { "name": "normal" }
       }
     }
   },
@@ -27,7 +27,7 @@
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
+        "model": { "name": "normal" }
       },
       "2": {
         "title": "25%-50% FG",
@@ -36,7 +36,7 @@
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
+        "model": { "name": "density_2" }
       },
       "3": {
         "title": "51%-75% FG",
@@ -45,7 +45,7 @@
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
+        "model": { "name": "density_3" }
       },
       "4": {
         "title": ">75% FG",
@@ -54,12 +54,12 @@
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
+        "model": { "name": "density_4" }
       }
     }
   },
   "benign": {
-    "title": "Conditions",
+    "title": "Benign",
     "heading": "Breast Benign Conditions",
     "icon": "mdi-lightning-bolt",
     "subTopics": {

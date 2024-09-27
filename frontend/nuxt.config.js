@@ -76,7 +76,7 @@ export default {
   ],
   server: {
     host: "localhost", // default: localhost
-    port: 3005, // default: 3000
+    port: 3055, // default: 3000
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -86,6 +86,7 @@ export default {
   plugins: [
     "@/plugins/topics",
     "@/plugins/current-content",
+    "@/plugins/models",
     { src: "~/plugins/copper.js", ssr: false },
   ],
 

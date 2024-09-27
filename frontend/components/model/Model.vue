@@ -1,6 +1,6 @@
 <template>
   <div class="model">
-      <v-tabs class="fixed flex justify-center tab-main">
+      <v-tabs class="fixed flex justify-center tab-main" @change="tabsOnChange">
         <v-tab class="tab-main">3D Mammogram</v-tab>
         <v-tab class="tab-main">2D Mammogram</v-tab>
       </v-tabs>
@@ -25,16 +25,44 @@
 </template>
 
 <script>
+import loadingSvg from "~/assets/images/loading/loading.svg";
 export default {
   data() {
     return {
       Copper: null,
       THREE: null,
       baseRenderer: null,
+      baseContainer: null,
       container: null,
+      modelData: null,
       nrrdMaxIndex:-1,
       nrrdSliceZ:null,
-      nrrdMeshes: null
+      nrrdMeshes: null,
+      loadFirstTime: true,
+      currentView: "3D Mammogram",
+      mouseActions: null,
+      modelUrlsArray:{
+        normal: [
+          "modelView/density-1/middle/m3d.nrrd",
+          "modelView/density-1/middle/m_view.json",
+          "modelView/density-1/middle/m2d.nrrd"
+        ],
+        density_2: [
+          "modelView/density-2/middle/m3d.nrrd",
+          "modelView/density-2/middle/m_view.json",
+          "modelView/density-2/middle/m2d.nrrd"
+        ],
+        density_3: [
+          "modelView/density-3/middle/m3d.nrrd",
+          "modelView/density-3/middle/m_view.json",
+          "modelView/density-3/middle/m2d.nrrd"
+        ],
+        density_4: [
+          "modelView/density-4/middle/m3d.nrrd",
+          "modelView/density-4/middle/m_view.json",
+          "modelView/density-4/middle/m2d.nrrd"
+        ]
+      },
     };
   },
 
@@ -54,16 +82,25 @@ export default {
     this.Copper = this.$Copper();
     this.baseRenderer = this.$baseRenderer();
     this.THREE = this.$three();
-    const baseContainer = this.$baseContainer();
+    this.raycaster = this.$raycaster();
+    this.baseContainer = this.$baseContainer();
+    this.modelData = this.$modelData();
     this.container = this.$refs.baseDomObject;
+    this.modelName = this.$model().name;
+    this.$nuxt.$emit("onNavChange", this.modelName);
 
-    setTimeout(() => {
-      this.mdAndUp
-        ? (baseContainer.style.height = "100vh")
-        : (baseContainer.style.height = "100vw");
-      this.container.appendChild(baseContainer);
+
+    
+
+    // setTimeout(() => {
+    //   this.mdAndUp
+    //     ? (baseContainer.style.height = "100vh")
+    //     : (baseContainer.style.height = "100vw");
+    //   this.container.appendChild(baseContainer);
+    //   this.start();
+    // }, 100);
+    this.container.appendChild(this.baseContainer);
       this.start();
-    }, 100);
 
     window.addEventListener("resize", () => {
       setTimeout(() => {
@@ -74,40 +111,39 @@ export default {
         this.scene.onWindowResize();
       }, 500);
     });
-
-    document.addEventListener('keydown', (event) => {
-
-        if (this.nrrdSliceZ == null) return;
-        const keyName = event.key;
-
-        if (keyName !== "ArrowUp" && keyName !== "ArrowDown"){
-          return;
-        }
-
-        let index = Math.ceil(this.nrrdSliceZ.index / this.nrrdSliceZ.volume.spacing[2]);
-
-        if(keyName==="ArrowUp"){
-          index += 1;
-          if (index > this.nrrdMaxIndex) index = this.nrrdMaxIndex;
-        }
-        if(keyName==="ArrowDown"){
-          index -= 1;
-          if (index < 0 ) index = 0;
-        }
-        this.nrrdSliceZ.index = index * this.nrrdSliceZ.volume.spacing[2];
-        this.nrrdSliceZ.repaint.call(this.nrrdSliceZ);
-    });
   },
 
   methods: {
     async start() {
-      this.loadNrrd("modelView/breast_14.nrrd", "breastnrrd");
-      
+      this.loadNrrd(this.modelUrlsArray[this.modelName][0], this.modelName+"middle_3d");
+    },
+
+    tabsOnChange(a) {
+      if (this.loadFirstTime) return;
+      const modelUrl = this.modelUrlsArray[this.modelName][0];
+      if (a === 0) {
+        this.currentView = "3D Mammogram";
+        this.loadNrrd(modelUrl, this.modelName+"middle_3d");
+      } else {
+        this.currentView = "2D Mammogram";
+        this.loadNrrd(this.modelUrlsArray[this.modelName][2], this.modelName+"middle_2d");
+      }
     },
 
     loadNrrd(nrrdUrl, modelName) {
-      const viewURL = "modelView/noInfarct_view.json";
-      const loadBar1 = this.Copper.loading("loading/loading.svg");
+      const viewURL = this.modelUrlsArray[this.modelName][1];
+      const loadBar1 = this.Copper.loading(loadingSvg);
+      const loadBar2 = this.Copper.loading(loadingSvg);
+      
+      const loadingContainer = loadBar1.loadingContainer;
+      loadingContainer.style.position = "fixed";
+      loadingContainer.style.top = 0;
+      loadingContainer.style.left = 0;
+      loadingContainer.style.right = 0;
+      loadingContainer.style.bottom = 0;
+      loadingContainer.style.display = "flex";
+      this.baseContainer.appendChild(loadingContainer);
+      loadBar1.progress.innerHTML = "Loading image...";
 
       this.scene = this.baseRenderer.getSceneByName(modelName);
       if (this.scene === undefined) {
@@ -115,28 +151,40 @@ export default {
         // this.scene.controls.staticMoving = true;
         // this.scene.controls.rotateSpeed = 3.0;
         this.scene.controls.panSpeed = 0.5;
+        
         this.baseRenderer.setCurrentScene(this.scene);
 
         this.scene.loadNrrd(
           nrrdUrl,
-          loadBar1,
+          loadBar2,
           true,
           (volume, nrrdMesh, nrrdSlices, gui) => {
             this.nrrdMeshes = nrrdMesh;
+            this.nrrdMeshes.x.name = "x";
+            this.nrrdMeshes.y.name = "y";
+            this.nrrdMeshes.z.name = "z";
             this.scene.addObject(nrrdMesh.z);
-            const nrrdOrigin = volume.header.space_origin.map((num) => Number(num));
-            const nrrdRas = volume.RASDimensions; 
-            
-
-            const x_bias = -(nrrdOrigin[0] * 2 + nrrdRas[0]) / 2;
-            const y_bias = -(nrrdOrigin[1] * 2 + nrrdRas[1]) / 2;
-            const z_bias = -(nrrdOrigin[2] * 2 + nrrdRas[2]) / 2;
-
             this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
             this.nrrdSliceZ = nrrdSlices.z;
 
-            this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
-            this.loadModel("modelView/prone_surface.obj");
+            if(this.currentView === "2D Mammogram"){
+              this.scene.controls.noRotate = true;
+              this.scene.controls.noPan = true;
+              this.removeContainerListener();
+            }else{
+              const data = {
+                nrrdSliceZ: this.nrrdSliceZ, 
+                nrrdMesh: this.nrrdMeshes.z, 
+                nrrdMaxIndex: this.nrrdMaxIndex
+              };
+              if(this.modelData[this.modelName] === undefined){
+                this.modelData[this.modelName] = {};
+              }
+              this.modelData[this.modelName]["middle"] = data;
+              this.addContainerListener();
+            }
+            loadingContainer.style.display = "none";
+            
           },
           { openGui: false }
         );
@@ -145,34 +193,33 @@ export default {
         this.scene.updateBackground("#f8cdd6", "#f8cdd6");
         this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
         this.baseRenderer.updateEnvironment();
+      }else{
+        loadingContainer.style.display = "none";
+        this.baseRenderer.setCurrentScene(this.scene);
+        if(this.currentView === "2D Mammogram"){
+          this.scene.controls.noRotate = true;
+          this.scene.controls.noPan = true;
+          this.removeContainerListener();
+        }else{
+          this.addContainerListener();
+        }
       }
+      this.loadFirstTime = false;
       this.scene.onWindowResize();
     },
-
-    loadModel(model_url) {
-      this.scene.loadOBJ(model_url, (content) => {
-        const box = new this.THREE.Box3().setFromObject(content);
-        const size = box.getSize(new this.THREE.Vector3()).length();
-        const center = box.getCenter(new this.THREE.Vector3());
-
-        // content.position.x += content.position.x - center.x;
-        // content.position.y += content.position.y - center.y;
-        // content.position.z += content.position.z - center.z;
-        content.position.set(this.nrrdBias.x, this.nrrdBias.y, this.nrrdBias.z);
-        content.renderOrder = 3;
-        content.traverse((child) => {
-          if (child.isMesh) {
-            child.material = new this.THREE.MeshPhysicalMaterial({
-              side: this.THREE.DoubleSide,
-              transparent: true,
-              opacity: 0.4,
-              color: "#a3932a",
-              wireframe: false,
-            });
-          }
-        });
-      });
-      this.scene.onWindowResize();
+    addContainerListener() {
+      const data = this.modelData[this.modelName]["middle"];
+      if(this.mouseActions === null){
+          this.mouseActions = this.raycaster(this.scene, this.container, data.nrrdSliceZ, data.nrrdMesh, data.nrrdMaxIndex);
+        }
+      this.container.addEventListener("mousemove", this.mouseActions.mouseMove);
+    },
+    removeContainerListener() {
+      if(this.mouseActions !== null){
+        this.container.addEventListener("mousemove", this.mouseActions.mouseMove);
+        this.container.removeEventListener("mousedown", this.mouseActions.mouseDown);
+        this.container.removeEventListener("mouseup", this.mouseActions.mouseUp);
+      }
     },
   },
 
@@ -180,6 +227,7 @@ export default {
 
   beforeDestroy() {
     // Wirte code before destory this component
+    this.removeContainerListener();
   },
 };
 </script>
