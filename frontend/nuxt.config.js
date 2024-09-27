@@ -76,7 +76,7 @@ export default {
   ],
   server: {
     host: "localhost", // default: localhost
-    port: 3005, // default: 3000
+    port: 3055, // default: 3000
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -86,6 +86,7 @@ export default {
   plugins: [
     "@/plugins/topics",
     "@/plugins/current-content",
+    "@/plugins/models",
     { src: "~/plugins/copper.js", ssr: false },
   ],
 
@@ -104,7 +105,17 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     "@nuxtjs/vuetify",
+    "@nuxtjs/pwa"
   ],
+  pwa: {
+    manifest: {
+      name: 'Breast Educational Resource',
+      short_name: 'Breast Education App',
+      description: 'An ABI Education App for Breast Cancer.',
+      theme_color: '#ffffff',
+    },
+
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ["@nuxtjs/axios"],

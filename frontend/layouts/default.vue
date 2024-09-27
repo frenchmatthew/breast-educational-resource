@@ -21,7 +21,6 @@
             <div class="pa-0" :class="mdAndUp ? 'full-height' : 'auto-height'">
               <v-row class="d-flex flex-column" no-gutters>
                 <v-col ref="panel" class="out-card">
-                  <!-- overflow-y-auto -->
                   <v-card
                     outlined
                     tile

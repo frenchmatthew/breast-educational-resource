@@ -1,19 +1,8 @@
 <template>
-  <div class="logo">
-    <img src="~assets/images/logo1.png" />
-    <img src="~assets/images/logo2.png" />
-    <img src="~assets/images/logo3.png" />
+  <div class="flex flex-col justify-end items-end">
+    <img class="w-32 h-auto my-1 mx-5" src="~assets/images/logo1.png" />
+    <img class="w-32 h-auto my-1 mx-5" src="~assets/images/logo2.png" />
+    <img class="w-48 h-auto my-1 mx-5" src="~assets/images/logo3.png" />
   </div>
 </template>
 
-<style scoped lang="scss">
-.logo {
-  display: flex;
-  flex-direction: column;
-  img {
-    width: 250px;
-    height: auto;
-    margin: 5px 0;
-  }
-}
-</style>

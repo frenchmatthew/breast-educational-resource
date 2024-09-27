@@ -4,19 +4,13 @@
       <model />
     </div>
     <div
-      class="trace-main"
-      :class="mdAndUp ? 'tracePanel-md' : 'tracePanel-sm'"
+      class="flex flex-col justify-center items-center md:fixed md:right-0 md:top-0 md:h-full md:w-1/4"
     >
-      <div :class="mdAndUp ? 'trace-md' : 'trace-sm'">
-        <PanelControls />
-      </div>
+      <PanelControls />
       <div
-        class="d-none d-md-flex justify-center"
-        :class="mdAndUp ? 'logo-md' : 'logo-sm'"
+        class="fixed md:bottom-0 md:right-0 "
       >
-        <div class="logo-mdAndUp">
-          <logo />
-        </div>
+         <logo/>
       </div>
     </div>
   </div>
@@ -32,10 +26,10 @@ export default {
     return {};
   },
   mounted() {
-    $nuxt.$emit(
-      "send-emitter-data",
-      "data in RightPanel.vue send to Model.vue"
-    );
+    // $nuxt.$emit(
+    //   "send-emitter-data",
+    //   "data in RightPanel.vue send to Model.vue"
+    // );
   },
   computed: {
     mdAndUp() {

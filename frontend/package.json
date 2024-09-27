@@ -23,6 +23,7 @@
     "vue-template-compiler": "^2.7.10"
   },
   "devDependencies": {
+    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/vuetify": "1.12.3",
     "markdown-loader": "^6.0.0",
     "sass": "1.49.0",

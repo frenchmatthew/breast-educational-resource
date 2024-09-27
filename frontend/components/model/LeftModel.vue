@@ -17,6 +17,25 @@ export default {
       panelStyle: null,
       model_panel: null,
       model_title: null,
+      navPanelName: null,
+      modelUrlsArray:{
+        normal: [
+          "modelView/density-1/left/density25.glb",
+          "modelView/density-1/left/left_breast_view.json",
+        ],
+        density_2:[
+          "modelView/density-2/left/density50.glb",
+          "modelView/density-2/left/left_breast_view.json",
+        ],
+        density_3:[
+          "modelView/density-3/left/density75.glb",
+          "modelView/density-3/left/left_breast_view.json",
+        ],
+        density_4:[
+          "modelView/density-4/left/density100.glb",
+          "modelView/density-4/left/left_breast_view.json",
+        ]
+      },
     };
   },
 
@@ -40,6 +59,9 @@ export default {
     this.$nuxt.$on("panel-height", this.setupPanelHeight);
     this.model_panel = "model_name";
     this.model_title = "model_title";
+    this.$nuxt.$on("onNavChange", this.onNavChange);
+    
+    
 
     this.start();
 
@@ -64,20 +86,30 @@ export default {
         }, 500);
       }
     },
+    onNavChange(modelName) {
+      this.navPanelName = modelName;
+      this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
+    },
     start() {
-      this.loadModel("modelView/breast-l.glb", "breastmodel");
+      if (this.navPanelName === null) {
+        this.loadModel(this.modelUrlsArray.normal[0], this.navPanelName+"left");
+      }else{
+        this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
+      }
     },
 
     loadModel(model_url, model_name) {
-      const viewURL = "modelView/left_breast_view.json";
+      let viewURL = "";
+      if (this.navPanelName === null) {
+        viewURL = this.modelUrlsArray.normal[1];
+      } else {
+        viewURL = this.modelUrlsArray[this.navPanelName][1];
+      }
       this.scene = this.baseRenderer.getSceneByName(model_name);
 
       if (this.scene === undefined) {
         this.scene = this.baseRenderer.createScene(model_name);
         this.scene.addLights();
-        // this.scene.controls.staticMoving = true;
-        // this.scene.controls.rotateSpeed = 3.0;
-        // this.scene.controls.panSpeed = 3.0;
         this.scene.controls.panSpeed = 0.2;
         this.baseRenderer.setCurrentScene(this.scene);
 
@@ -98,6 +130,8 @@ export default {
         this.scene.updateBackground("#fab9c5", "#fab9c5");
         this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
         this.baseRenderer.updateEnvironment();
+      }else{
+        this.baseRenderer.setCurrentScene(this.scene);
       }
       this.scene.onWindowResize();
     },

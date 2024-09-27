@@ -11,7 +11,7 @@
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
-        "model": { "name": "NoInfarct" }
+        "model": { "name": "normal" }
       }
     }
   },
@@ -20,10 +20,46 @@
     "heading": "Breast Density",
     "icon": "mdi-heart-broken",
     "subTopics": {
+      "1": {
+        "title": "<25% FG",
+        "heading": "Almost entirely fat",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "normal" }
+      },
+      "2": {
+        "title": "25%-50% FG",
+        "heading": "Scattered fibroglandular densities",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "density_2" }
+      },
+      "3": {
+        "title": "51%-75% FG",
+        "heading": "Heterogeneously dense",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "density_3" }
+      },
+      "4": {
+        "title": ">75% FG",
+        "heading": "Extremely dense",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "density_4" }
+      }
     }
   },
   "benign": {
-    "title": "B.C.",
+    "title": "Benign",
     "heading": "Breast Benign Conditions",
     "icon": "mdi-lightning-bolt",
     "subTopics": {
