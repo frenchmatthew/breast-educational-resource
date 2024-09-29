@@ -28,7 +28,6 @@ export default {
         normal: [
           "modelView/density-1/right/mri.nrrd",
           "modelView/density-1/right/mri_view.json",
-          "modelView/density-1/right/prone_surface.obj",
         ],
         density_2: [
           "modelView/density-2/right/mri.nrrd",
@@ -41,7 +40,6 @@ export default {
         density_4: [
           "modelView/density-4/right/mri.nrrd",
           "modelView/density-4/right/mri_view.json",
-          "modelView/density-4/right/prone_surface.obj",
         ],
       },
     };
@@ -93,6 +91,8 @@ export default {
 
             this.nrrdMeshes = nrrdMesh;
             this.scene.addObject(nrrdMesh.z);
+            console.log(volume.header);
+            
             const nrrdOrigin = volume.header.space_origin.map((num) => Number(num));
             const nrrdRas = volume.RASDimensions; 
             
