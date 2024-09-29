@@ -2,6 +2,7 @@ import * as Copper from "copper3d";
 import * as THREE from "three";
 
 const modelData = {};
+const modelToScenes = {};
 
 const container = document.createElement("div");
 container.style.width = "100vw";
@@ -117,6 +118,9 @@ export default (context, inject) => {
   }),
   inject("modelData", () => {
     return modelData;
+  }),
+  inject("modelToScenes", () => {
+    return modelToScenes;
   }),
   inject("three", () => {
     return THREE;

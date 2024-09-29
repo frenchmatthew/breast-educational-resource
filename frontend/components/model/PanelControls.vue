@@ -22,6 +22,7 @@ export default {
       nrrdSliceZ:null,
       nrrdMeshes: null,
       modelData: null,
+      modelToScenes:{},
       modelName: null,
       mouseActions: null,
       modelUrlsArray:{
@@ -48,6 +49,7 @@ export default {
     this.Copper = this.$Copper();
     this.THREE = this.$three();
     this.raycaster = this.$raycaster();
+    this.modelToScenes = this.$modelToScenes();
     this.baseRenderer = this.$baseRightRenderer();
     this.baseContainer = this.$baseRightContainer();
     this.modelData = this.$modelData();
@@ -91,8 +93,6 @@ export default {
 
             this.nrrdMeshes = nrrdMesh;
             this.scene.addObject(nrrdMesh.z);
-            console.log(volume.header);
-            
             const nrrdOrigin = volume.header.space_origin.map((num) => Number(num));
             const nrrdRas = volume.RASDimensions; 
             
@@ -127,6 +127,7 @@ export default {
         this.scene.updateBackground("#f8cdd6", "#f8cdd6");
         this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
         this.baseRenderer.updateEnvironment();
+        this.modelToScenes[modelName] = this.scene;
       }else{
         this.baseRenderer.setCurrentScene(this.scene);
         this.addContainerListener();
@@ -161,8 +162,7 @@ export default {
     },
 
     addContainerListener() {
-      console.log(this.modelData[this.modelName]);
-      
+
       const data = this.modelData[this.modelName]["right"];
       if(this.mouseActions === null){
           this.mouseActions = this.raycaster(this.scene, this.container, data.nrrdSliceZ, data.nrrdMesh, data.nrrdMaxIndex);
