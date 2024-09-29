@@ -14,6 +14,7 @@
         <div class="baseModelCB" :class="mdAndUp ? 'baseModelCB-md' : ''">
           <button
             class="absolute top-0 left-0 w-1/4 h-full hover:bg-zinc-700/30 rounded-lg"
+            @click="onResetAllModelsView"
           />
           <img
             src="~/assets/images/gestures-icons.png"
@@ -41,6 +42,7 @@ export default {
       loadFirstTime: true,
       currentView: "3D Mammogram",
       mouseActions: null,
+      modelToScenes:{},
       modelUrlsArray:{
         normal: [
           "modelView/density-1/middle/m3d.nrrd",
@@ -83,6 +85,7 @@ export default {
     this.baseRenderer = this.$baseRenderer();
     this.THREE = this.$three();
     this.raycaster = this.$raycaster();
+    this.modelToScenes = this.$modelToScenes();
     this.baseContainer = this.$baseContainer();
     this.modelData = this.$modelData();
     this.container = this.$refs.baseDomObject;
@@ -184,7 +187,6 @@ export default {
               this.addContainerListener();
             }
             loadingContainer.style.display = "none";
-            
           },
           { openGui: false }
         );
@@ -193,6 +195,7 @@ export default {
         this.scene.updateBackground("#f8cdd6", "#f8cdd6");
         this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
         this.baseRenderer.updateEnvironment();
+        this.modelToScenes[modelName] = this.scene;
       }else{
         loadingContainer.style.display = "none";
         this.baseRenderer.setCurrentScene(this.scene);
@@ -219,6 +222,14 @@ export default {
         this.container.addEventListener("mousemove", this.mouseActions.mouseMove);
         this.container.removeEventListener("mousedown", this.mouseActions.mouseDown);
         this.container.removeEventListener("mouseup", this.mouseActions.mouseUp);
+      }
+    },
+    onResetAllModelsView() {
+
+      for (var k in this.modelToScenes) {
+        if (this.modelToScenes.hasOwnProperty(k)) {
+          this.modelToScenes[k].resetView();
+        }
       }
     },
   },

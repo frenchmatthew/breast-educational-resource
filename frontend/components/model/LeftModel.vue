@@ -17,6 +17,7 @@ export default {
       panelStyle: null,
       model_panel: null,
       model_title: null,
+      modelToScenes: {},
       navPanelName: null,
       modelUrlsArray:{
         normal: [
@@ -53,6 +54,7 @@ export default {
     this.baseRenderer = this.$baseLeftRenderer();
     this.baseContainer = this.$baseLeftContainer();
     this.container = this.$refs.leftContainer;
+    this.modelToScenes = this.$modelToScenes();
 
     this.container.appendChild(this.baseContainer);
 
@@ -130,6 +132,7 @@ export default {
         this.scene.updateBackground("#fab9c5", "#fab9c5");
         this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
         this.baseRenderer.updateEnvironment();
+        this.modelToScenes[model_name] = this.scene;
       }else{
         this.baseRenderer.setCurrentScene(this.scene);
       }
