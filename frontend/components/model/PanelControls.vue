@@ -119,6 +119,7 @@ export default {
             }
             this.modelData[this.modelName]["right"] = data;
             this.addContainerListener();
+            this.scene.onWindowResize();
           },
           { openGui: false }
         );
