@@ -108,8 +108,8 @@ export default {
     window.addEventListener("resize", () => {
       setTimeout(() => {
         this.mdAndUp
-          ? (baseContainer.style.height = "100vh")
-          : (baseContainer.style.height = "100vw");
+          ? (this.baseContainer.style.height = "100vh")
+          : (this.baseContainer.style.height = "100vw");
 
         this.scene.onWindowResize();
       }, 500);
