@@ -171,13 +171,13 @@ export default {
       if(this.mouseActions === null){
           this.mouseActions = this.raycaster(this.scene, this.container, data.nrrdSliceZ, data.nrrdMesh, data.nrrdMaxIndex);
         }
-      this.container.addEventListener("mousemove", this.mouseActions.mouseMove);
+      this.container.addEventListener("pointermove", this.mouseActions.mouseMove);
     },
     removeContainerListener() {
       if(this.mouseActions !== null){
-        this.container.removeEventListener("mousemove", this.mouseActions.mouseMove);
-        this.container.removeEventListener("mousedown", this.mouseActions.mouseDown);
-        this.container.removeEventListener("mouseup", this.mouseActions.mouseUp);
+        this.container.removeEventListener("pointermove", this.mouseActions.mouseMove);
+        this.container.removeEventListener("pointerdown", this.mouseActions.mouseDown);
+        this.container.removeEventListener("pointerup", this.mouseActions.mouseUp);
       }
     },
   },
