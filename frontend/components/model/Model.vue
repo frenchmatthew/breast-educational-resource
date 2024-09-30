@@ -69,9 +69,9 @@ export default {
   },
 
   created: async function () {
-    this.$nuxt.$on("send-emitter-data", (data) => {
-      console.log(data);
-    });
+    // this.$nuxt.$on("send-emitter-data", (data) => {
+    //   console.log(data);
+    // });
   },
 
   computed: {
@@ -90,20 +90,14 @@ export default {
     this.modelData = this.$modelData();
     this.container = this.$refs.baseDomObject;
     this.modelName = this.$model().name;
+
+    if(["cyst", "fibroadenoma", "calcifications", "fat_necrosis", "dcis", "lobular", "ductal"].includes(this.modelName)){
+      this.modelName = "normal";
+    }
+
     this.$nuxt.$emit("onNavChange", this.modelName);
-
-
-    
-
-    // setTimeout(() => {
-    //   this.mdAndUp
-    //     ? (baseContainer.style.height = "100vh")
-    //     : (baseContainer.style.height = "100vw");
-    //   this.container.appendChild(baseContainer);
-    //   this.start();
-    // }, 100);
     this.container.appendChild(this.baseContainer);
-      this.start();
+    this.start();
 
     window.addEventListener("resize", () => {
       setTimeout(() => {
@@ -219,7 +213,7 @@ export default {
     },
     removeContainerListener() {
       if(this.mouseActions !== null){
-        this.container.addEventListener("mousemove", this.mouseActions.mouseMove);
+        this.container.removeEventListener("mousemove", this.mouseActions.mouseMove);
         this.container.removeEventListener("mousedown", this.mouseActions.mouseDown);
         this.container.removeEventListener("mouseup", this.mouseActions.mouseUp);
       }
