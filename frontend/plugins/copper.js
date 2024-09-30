@@ -83,16 +83,16 @@ const raycaster = (scene, container, nrrdSliceZ, nrrdMesh, nrrdMaxIndex) => {
       if(!findMesh){
         scene.controls.noRotate = true;
         container.style.cursor = "pointer";
-        container.addEventListener("mousedown", mouseDown);
-        container.addEventListener("mouseup", mouseUp);
+        container.addEventListener("pointerdown", mouseDown);
+        container.addEventListener("pointerup", mouseUp);
       }
       findMesh = true;
     }else{
       findMesh = false;
       scene.controls.noRotate = false;
       container.style.cursor = "auto";
-      container.removeEventListener("mousedown", mouseDown);
-      container.removeEventListener("mouseup", mouseUp);
+      container.removeEventListener("pointerdown", mouseDown);
+      container.removeEventListener("pointerup", mouseUp);
     }
   }
   return {mouseMove, mouseDown, mouseUp};
