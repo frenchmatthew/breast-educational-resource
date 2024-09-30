@@ -145,7 +145,7 @@ export default {
       this.scene = this.baseRenderer.getSceneByName(modelName);
       if (this.scene === undefined) {
         this.scene = this.baseRenderer.createScene(modelName);
-        // this.scene.controls.staticMoving = true;
+        this.scene.controls.staticMoving = true;
         // this.scene.controls.rotateSpeed = 3.0;
         this.scene.controls.panSpeed = 0.5;
         
