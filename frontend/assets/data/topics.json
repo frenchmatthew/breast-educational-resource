@@ -21,7 +21,7 @@
     "icon": "mdi-heart-broken",
     "subTopics": {
       "1": {
-        "title": "<25% FG",
+        "title": "A",
         "heading": "Almost entirely fat",
         "icon": "mdi-home-heart",
         "dataFile": "breast-main",
@@ -30,7 +30,7 @@
         "model": { "name": "normal" }
       },
       "2": {
-        "title": "25%-50% FG",
+        "title": "B",
         "heading": "Scattered fibroglandular densities",
         "icon": "mdi-home-heart",
         "dataFile": "breast-main",
@@ -39,7 +39,7 @@
         "model": { "name": "density_2" }
       },
       "3": {
-        "title": "51%-75% FG",
+        "title": "C",
         "heading": "Heterogeneously dense",
         "icon": "mdi-home-heart",
         "dataFile": "breast-main",
@@ -48,7 +48,7 @@
         "model": { "name": "density_3" }
       },
       "4": {
-        "title": ">75% FG",
+        "title": "D",
         "heading": "Extremely dense",
         "icon": "mdi-home-heart",
         "dataFile": "breast-main",
@@ -63,6 +63,42 @@
     "heading": "Breast Benign Conditions",
     "icon": "mdi-lightning-bolt",
     "subTopics": {
+      "cyst": {
+        "title": "Cyst",
+        "heading": "Cyst",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "cyst" }
+      },
+      "fibroadenoma": {
+        "title": "Fibroadenoma",
+        "heading": "Fibroadenoma",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "fibroadenoma" }
+      },
+      "calcifications": {
+        "title": "Calcifications",
+        "heading": "Calcifications",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "calcifications" }
+      },
+      "fat_necrosis": {
+        "title": "Fat necrosis",
+        "heading": "Fat necrosis",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "fat_necrosis" }
+      }
     }
   },
   "cancer": {
@@ -70,6 +106,33 @@
     "heading": "Breast Cancer",
     "icon": "mdi-heart-off",
     "subTopics": {
+      "dcis": {
+        "title": "DCIS",
+        "heading": "DCIS",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "dcis" }
+      },
+      "lobular": {
+        "title": "Lobular",
+        "heading": "Lobular",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "lobular" }
+      },
+      "ductal": {
+        "title": "Ductal",
+        "heading": "Ductal",
+        "icon": "mdi-home-heart",
+        "dataFile": "breast-main",
+        "category": "success",
+        "subTitle": "subSuccess",
+        "model": { "name": "ductal" }
+      }
     }
   }
 }

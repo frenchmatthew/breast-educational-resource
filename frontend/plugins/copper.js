@@ -78,6 +78,7 @@ const raycaster = (scene, container, nrrdSliceZ, nrrdMesh, nrrdMaxIndex) => {
   }
   const mouseMove = (event) => {
     const a = scene.pickSpecifiedModel(nrrdMesh, {x: event.offsetX, y: event.offsetY});
+
     if(!!a.intersectedObject){
       if(!findMesh){
         scene.controls.noRotate = true;

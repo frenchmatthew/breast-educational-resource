@@ -58,6 +58,9 @@ export default {
     this.container.appendChild(this.baseContainer);
     // Write code after mount this component
     this.modelName = this.$model().name;
+    if(["cyst", "fibroadenoma", "calcifications", "fat_necrosis", "dcis", "lobular", "ductal"].includes(this.modelName)){
+      this.modelName = "normal";
+    }
     
     this.start();
 
@@ -69,7 +72,7 @@ export default {
   },
 
   methods: {
-    async start() {
+    start() {
       this.loadNrrd(this.modelUrlsArray[this.modelName][0], this.modelName+"right_mri");
     },
 
