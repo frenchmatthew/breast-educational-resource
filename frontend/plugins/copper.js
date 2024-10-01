@@ -53,31 +53,48 @@ const baseRightRenderer = new Copper.copperRenderer(rightContainer, {
 });
 baseRightRenderer.animate();
 
+function throttle(func, delay) {
+  let lastCall = 0;
+
+  return function(...args) {
+      const now = Date.now();
+      if (now - lastCall >= delay) {
+          lastCall = now;
+          return func.apply(this, args);
+      }
+  };
+}
+
 const raycaster = (scene, container, nrrdSliceZ, nrrdMesh, nrrdMaxIndex) => {
   let startY = null;
   let endY = null;
   let findMesh = false;
+  let userMouseDown = false;
   const mouseDown = (event) => {
     if (event.button === 0) {
       startY = event.clientY;
+      userMouseDown = true;
     }
   }
 
   const mouseUp = (event) => {
-    if (event.button === 0 && startY !== null) { 
-      endY = event.clientY; 
-      const distance = Math.ceil((endY - startY)/100);
-      let index = Math.ceil(nrrdSliceZ.index / nrrdSliceZ.volume.spacing[2]);
-      index += distance;
-      if (index > nrrdMaxIndex) index = nrrdMaxIndex;
-      if (index < 0) index = 0;
-      nrrdSliceZ.index = index * nrrdSliceZ.volume.spacing[2];
-      nrrdSliceZ.repaint.call(nrrdSliceZ);
-      startY = null;
-    }
+    userMouseDown = false;
   }
   const mouseMove = (event) => {
     const a = scene.pickSpecifiedModel(nrrdMesh, {x: event.offsetX, y: event.offsetY});
+
+    if (userMouseDown) {
+      throttle(()=>{
+        endY = event.clientY; 
+        const distance = Math.ceil((endY - startY)/100);
+        let index = Math.ceil(nrrdSliceZ.index / nrrdSliceZ.volume.spacing[2]);
+        index += distance;
+        if (index > nrrdMaxIndex) index = nrrdMaxIndex;
+        if (index < 0) index = 0;
+        nrrdSliceZ.index = index * nrrdSliceZ.volume.spacing[2];
+        nrrdSliceZ.repaint.call(nrrdSliceZ);
+      }, 1000).call();
+    }
 
     if(!!a.intersectedObject){
       if(!findMesh){
