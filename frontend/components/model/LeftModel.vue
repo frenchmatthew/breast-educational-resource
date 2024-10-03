@@ -112,6 +112,7 @@ export default {
       if (this.scene === undefined) {
         this.scene = this.baseRenderer.createScene(model_name);
         this.scene.addLights();
+        this.scene.controls.rotateSpeed = 5.0;
         this.scene.controls.panSpeed = 0.2;
         this.baseRenderer.setCurrentScene(this.scene);
 
@@ -129,9 +130,11 @@ export default {
           });
         });
         this.scene.loadViewUrl(viewURL);
-        this.scene.updateBackground("#fab9c5", "#fab9c5");
+         
+        this.scene.updateBackground("#fda4af", "#fda4af");
         this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
         this.baseRenderer.updateEnvironment();
+       
         this.modelToScenes[model_name] = this.scene;
       }else{
         this.baseRenderer.setCurrentScene(this.scene);
