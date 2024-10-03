@@ -14,7 +14,7 @@ const baseRenderer = new Copper.copperRenderer(container, {
   guiOpen,
   camera: true,
   performance: true,
-  alpha: false,
+  alpha: true,
   logarithmicDepthBuffer: true,
   light: false,
   controls: "copper3d",
@@ -44,7 +44,7 @@ rightContainer.style.height = "100%";
 
 const baseRightRenderer = new Copper.copperRenderer(rightContainer, {
   guiOpen: false,
-  alpha: false,
+  alpha: true,
   cameraGui: true,
   performance: true,
   logarithmicDepthBuffer: true,
