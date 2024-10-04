@@ -1,8 +1,9 @@
 <template>
-  <div class="w-full h-1/2">
-    <span style="color: rgb(244, 55, 149);" class="font-bold">
-      {{ modelControl }}
-    </span>
+  <!-- <div class="w-full h-full border-l border-rose-300 p-4"> -->
+  <div class="w-full h-full r_main">
+    <div class="absolute flex  justify-center items-center top-0 right-0 w-full h-11 p-1 my-2">
+      <span class="text-black text-base font-thin">{{ modelControl }}</span>
+    </div>
 
     <div ref="rightContainer" class="w-full h-full">
     </div>
@@ -85,6 +86,8 @@ export default {
         this.scene = this.baseRenderer.createScene(modelName);
         // this.scene.controls.staticMoving = true;
         // this.scene.controls.rotateSpeed = 3.0;
+        this.scene.controls.minDistance = 500;
+        this.scene.controls.maxDistance = 3000;
         this.scene.controls.panSpeed = 0.5;
         this.baseRenderer.setCurrentScene(this.scene);
 
@@ -96,9 +99,9 @@ export default {
 
             this.nrrdMeshes = nrrdMesh;
             this.scene.addObject(nrrdMesh.z);
+            
             const nrrdOrigin = volume.header.space_origin.map((num) => Number(num));
             const nrrdRas = volume.RASDimensions; 
-            
 
             const x_bias = -(nrrdOrigin[0] * 2 + nrrdRas[0]) / 2;
             const y_bias = -(nrrdOrigin[1] * 2 + nrrdRas[1]) / 2;
@@ -108,6 +111,12 @@ export default {
             this.nrrdSliceZ = nrrdSlices.z;
 
             this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
+            // bunding box
+            const geometry = new this.THREE.BoxGeometry( nrrdRas[0], nrrdRas[1], nrrdRas[2] ); 
+            const material = new this.THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
+            const cube = new this.THREE.Mesh( geometry, material ); 
+            const box = new this.THREE.BoxHelper( cube, 0xffffff );
+            this.scene.scene.add( box );
 
             if(this.modelUrlsArray[this.modelName].length > 2)
               this.loadModel(this.modelUrlsArray[this.modelName][2]);
@@ -121,6 +130,7 @@ export default {
               this.modelData[this.modelName] = {};
             }
             this.modelData[this.modelName]["right"] = data;
+
             this.addContainerListener();
             this.scene.onWindowResize();
           },
@@ -128,9 +138,10 @@ export default {
         );
 
         this.scene.loadViewUrl(viewURL);
-        this.scene.updateBackground("#f8cdd6", "#f8cdd6");
-        this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
-        this.baseRenderer.updateEnvironment();
+        // this.scene.updateBackground("#f8cdd6", "#f8cdd6");
+        // this.scene.updateBackground("#fab9c5", "#fab9c5");
+        // this.Copper.setHDRFilePath("");
+        // this.baseRenderer.updateEnvironment();
         this.modelToScenes[modelName] = this.scene;
       }else{
         this.baseRenderer.setCurrentScene(this.scene);
@@ -189,12 +200,27 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.r_main{
+//   border-radius: 5px;
+// background: linear-gradient(145deg, #e26678, #ff798e);
+// box-shadow:  20px 20px 60px #d56071,
+//              -20px -20px 60px #ff8299;
+border-radius: 5px;
+// background: #fb718588;
+background: linear-gradient(81deg, rgba(254,205,211,0.8) 0%, rgba(253,164,175,0.8) 0%, rgba(251,113,133,0.8) 100%);
+box-shadow:  5px 5px 10px #e4949e,
+             -5px -5px 10px #ffb4c1;
+}
 .model-control {
   padding-top: 80px;
   span {
     font-size: 1rem;
-    font-weight: bold;
-    color: rgb(244, 55, 149);
+    // font-weight: bold;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    color: #000;
+
   }
   .mri {
     padding: 0;

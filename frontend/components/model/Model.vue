@@ -1,8 +1,8 @@
 <template>
-  <div class="model">
+  <div class="model ">
       <v-tabs class="fixed flex justify-center tab-main" @change="tabsOnChange">
-        <v-tab class="tab-main">3D Mammogram</v-tab>
-        <v-tab class="tab-main">2D Mammogram</v-tab>
+        <v-tab class="tab-sub w-40">{{ tab1 }}</v-tab>
+        <v-tab class="tab-sub w-40">{{ tab2 }}</v-tab>
       </v-tabs>
     
     <div ref="baseDomObject" :class="mdAndUp ? 'baseDom-md' : 'baseDom-sm'" />
@@ -40,6 +40,8 @@ export default {
       nrrdSliceZ:null,
       nrrdMeshes: null,
       loadFirstTime: true,
+      tab1: "3D Mammogram",
+      tab2: "2D Mammogram",
       currentView: "3D Mammogram",
       mouseActions: null,
       modelToScenes:{},
@@ -90,6 +92,12 @@ export default {
     this.modelData = this.$modelData();
     this.container = this.$refs.baseDomObject;
     this.modelName = this.$model().name;
+
+    if(this.modelName === "cyst"){
+      this.tab2 = "2D Ultrasound";
+    }else{
+      this.tab2 = "2D Mammogram";
+    }
 
     if(["cyst", "fibroadenoma", "calcifications", "fat_necrosis", "dcis", "lobular", "ductal"].includes(this.modelName)){
       this.modelName = "normal";
@@ -145,8 +153,8 @@ export default {
       this.scene = this.baseRenderer.getSceneByName(modelName);
       if (this.scene === undefined) {
         this.scene = this.baseRenderer.createScene(modelName);
-        this.scene.controls.staticMoving = true;
-        // this.scene.controls.rotateSpeed = 3.0;
+        // this.scene.controls.staticMoving = true;
+        this.scene.controls.rotateSpeed = 5.0;
         this.scene.controls.panSpeed = 0.5;
         
         this.baseRenderer.setCurrentScene(this.scene);
@@ -163,6 +171,24 @@ export default {
             this.scene.addObject(nrrdMesh.z);
             this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
             this.nrrdSliceZ = nrrdSlices.z;
+
+            // const nrrdOrigin = volume.header.space_origin.map((num) => Number(num));
+            const nrrdRas = volume.RASDimensions; 
+
+            const x_bias = -(nrrdRas[0]) / 2;
+            const y_bias = -(nrrdRas[1]) / 2;
+            const z_bias = -(nrrdRas[2]) / 2;
+
+            this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
+            this.nrrdSliceZ = nrrdSlices.z;
+
+            this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
+            // bunding box
+            const geometry = new this.THREE.BoxGeometry( nrrdRas[0], nrrdRas[1], nrrdRas[2] ); 
+            const material = new this.THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
+            const cube = new this.THREE.Mesh( geometry, material ); 
+            const box = new this.THREE.BoxHelper( cube, 0xffffff );
+            this.scene.scene.add( box );
 
             if(this.currentView === "2D Mammogram"){
               this.scene.controls.noRotate = true;
@@ -186,9 +212,9 @@ export default {
         );
 
         this.scene.loadViewUrl(viewURL);
-        this.scene.updateBackground("#f8cdd6", "#f8cdd6");
-        this.Copper.setHDRFilePath("environment/venice_sunset_1k.hdr");
-        this.baseRenderer.updateEnvironment();
+        // this.scene.updateBackground("#f8cdd6", "#f8cdd6");
+      
+        // this.baseRenderer.updateEnvironment();
         this.modelToScenes[modelName] = this.scene;
       }else{
         loadingContainer.style.display = "none";
@@ -238,6 +264,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.model {
+  background: rgb(251,113,133);
+  background: linear-gradient(90deg, rgba(251,113,133,1) 0%, rgba(253,164,175,1) 48%, rgba(251,113,133,1) 100%);
+}
 .baseModelControl {
   width: 100vw;
   height: 120px;
@@ -267,7 +297,14 @@ export default {
   height: 60px;
 }
 .tab-main{
-  background-color: #EF9BAA !important;
+  // background-color: #fb7185 !important;
+  // background: rgb(244,63,94) !important;
+  background: rgb(251,113,133);
+  background: linear-gradient(90deg, rgba(251,113,133,1) 0%, rgba(253,164,175,1) 48%, rgba(251,113,133,1) 100%);
+}
+.tab-sub{
   color: #000 !important;
+  background: #fda4af;
+  // background: linear-gradient(90deg, rgba(251,113,133,1) 0%, rgba(253,164,175,1) 48%, rgba(251,113,133,1) 100%);
 }
 </style>
