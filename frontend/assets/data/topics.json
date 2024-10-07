@@ -21,7 +21,7 @@
     "icon": "mdi-heart-broken",
     "subTopics": {
       "1": {
-        "title": "A",
+        "title": "1",
         "heading": "Almost entirely fat",
         "icon": "mdi-home-heart",
         "dataFile": "breast-main",
@@ -30,7 +30,7 @@
         "model": { "name": "normal" }
       },
       "2": {
-        "title": "B",
+        "title": "2",
         "heading": "Scattered fibroglandular densities",
         "icon": "mdi-home-heart",
         "dataFile": "breast-main",
@@ -39,7 +39,7 @@
         "model": { "name": "density_2" }
       },
       "3": {
-        "title": "C",
+        "title": "3",
         "heading": "Heterogeneously dense",
         "icon": "mdi-home-heart",
         "dataFile": "breast-main",
@@ -48,7 +48,7 @@
         "model": { "name": "density_3" }
       },
       "4": {
-        "title": "D",
+        "title": "4",
         "heading": "Extremely dense",
         "icon": "mdi-home-heart",
         "dataFile": "breast-main",
@@ -134,5 +134,10 @@
         "model": { "name": "ductal" }
       }
     }
+  },
+  "action": {
+    "title": "Action",
+    "heading": "Call to Action",
+    "subTopics": {}
   }
 }

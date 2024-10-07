@@ -3109,10 +3109,10 @@ cookie@^0.3.1:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
   integrity sha512-+IJOX0OqlHCszo2mBUq+SrEbCj6w7Kpffqx60zYbPTFaO4+yYgRjHwcZNpWvaTylDHaV7PPmBHzSecZiMhtPgw==
 
-copper3d@^2.0.9:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/copper3d/-/copper3d-2.0.9.tgz#59be36f1fd16683209ecbb1b8e58709448e036b8"
-  integrity sha512-Sy/yY7171cMg3C2mHNKFWiVy8YNZSgHO54Xv9vEl/uI8YRV3lS8f73UWebWpvm8xr5b4+UnAgqKMRBz1siA4Fw==
+copper3d@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/copper3d/-/copper3d-2.1.1.tgz#bb10705701c6093d3b24ead133285b26ea00251c"
+  integrity sha512-OPu6hWdCrIZHZ9kEwArBCXo/avdWy4XtSNpgZgovwEP480OEe7egQ0XumVPxMdX8DFZfUCpzw9TUu9DUR/S6AA==
   dependencies:
     "@types/dat.gui" "^0.7.9"
     "@types/three" "^0.152.0"

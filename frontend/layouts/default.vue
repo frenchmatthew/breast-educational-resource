@@ -131,8 +131,8 @@ export default {
   align-items: center;
 }
 .outer-large {
-  min-width: 409px;
-  width: 30vw;
+  min-width: 499px;
+  width: 33vw;
   position: fixed;
   top: 0;
   left: 0;
