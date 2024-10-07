@@ -69,7 +69,8 @@ export default {
         cyst: [
           "modelView/benign-cyst/middle/m3d.nrrd",
           "modelView/benign-cyst/middle/m_view.json",
-          "modelView/benign-cyst/middle/u2d.nrrd"
+          "modelView/benign-cyst/middle/u2d.nrrd",
+          "modelView/benign-cyst/middle/u_view.json",
         ]
       },
     };
@@ -142,7 +143,7 @@ export default {
     },
 
     loadNrrd(nrrdUrl, modelName) {
-      const viewURL = this.modelUrlsArray[this.modelName][1];
+      const viewURL = this.currentView === "2D Ultrasound" ? this.modelUrlsArray[this.modelName][3] : this.modelUrlsArray[this.modelName][1];
       const loadBar1 = this.Copper.loading(loadingSvg);
       const loadBar2 = this.Copper.loading(loadingSvg);
       
@@ -197,18 +198,19 @@ export default {
               this.nrrdSliceZ = nrrdSlices.z;
 
               this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
-              // bunding box
-              const geometry = new this.THREE.BoxGeometry( nrrdRas[0], nrrdRas[1], nrrdRas[2] ); 
-              const material = new this.THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
-              const cube = new this.THREE.Mesh( geometry, material ); 
-              const box = new this.THREE.BoxHelper( cube, 0xffffff );
-              this.scene.scene.add( box );
+              
 
               if(this.currentView === "2D Mammogram" || this.currentView === "2D Ultrasound"){
                 this.scene.controls.noRotate = true;
                 this.scene.controls.noPan = true;
                 this.removeContainerListener();
               }else{
+                // bunding box
+                const geometry = new this.THREE.BoxGeometry( nrrdRas[0], nrrdRas[1], nrrdRas[2] ); 
+                const material = new this.THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
+                const cube = new this.THREE.Mesh( geometry, material ); 
+                const box = new this.THREE.BoxHelper( cube, 0xffffff );
+                this.scene.scene.add( box );
                 const data = {
                   nrrdSliceZ: this.nrrdSliceZ, 
                   nrrdMesh: this.nrrdMeshes.z, 
