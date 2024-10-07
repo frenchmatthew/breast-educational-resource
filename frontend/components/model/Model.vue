@@ -65,6 +65,11 @@ export default {
           "modelView/density-4/middle/m3d.nrrd",
           "modelView/density-4/middle/m_view.json",
           "modelView/density-4/middle/m2d.nrrd"
+        ],
+        cyst: [
+          "modelView/benign-cyst/middle/m3d.nrrd",
+          "modelView/benign-cyst/middle/m_view.json",
+          "modelView/benign-cyst/middle/u2d.nrrd"
         ]
       },
     };
@@ -99,11 +104,12 @@ export default {
       this.tab2 = "2D Mammogram";
     }
 
-    if(["cyst", "fibroadenoma", "calcifications", "fat_necrosis", "dcis", "lobular", "ductal"].includes(this.modelName)){
+    this.$nuxt.$emit("onNavChange", this.modelName);
+    if(["fibroadenoma", "calcifications", "fat_necrosis", "dcis", "lobular", "ductal"].includes(this.modelName)){
       this.modelName = "normal";
     }
 
-    this.$nuxt.$emit("onNavChange", this.modelName);
+    
     this.container.appendChild(this.baseContainer);
     this.start();
 
@@ -130,7 +136,7 @@ export default {
         this.currentView = "3D Mammogram";
         this.loadNrrd(modelUrl, this.modelName+"middle_3d");
       } else {
-        this.currentView = "2D Mammogram";
+        this.currentView = this.modelName === "cyst" ? "2D Ultrasound" : "2D Mammogram";
         this.loadNrrd(this.modelUrlsArray[this.modelName][2], this.modelName+"middle_2d");
       }
     },
@@ -159,57 +165,67 @@ export default {
         
         this.baseRenderer.setCurrentScene(this.scene);
 
-        this.scene.loadNrrd(
-          nrrdUrl,
-          loadBar2,
-          true,
-          (volume, nrrdMesh, nrrdSlices, gui) => {
-            this.nrrdMeshes = nrrdMesh;
-            this.nrrdMeshes.x.name = "x";
-            this.nrrdMeshes.y.name = "y";
-            this.nrrdMeshes.z.name = "z";
-            this.scene.addObject(nrrdMesh.z);
-            this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
-            this.nrrdSliceZ = nrrdSlices.z;
+        // if(this.currentView === "2D Ultrasound"){
+        //   this.scene.loadDicom(nrrdUrl, {
+        //     getMesh(mesh) {
+        //       console.log(mesh);
+        //       loadingContainer.style.display = "none";
+        //     },
+        //   });
+        // }else{
+          this.scene.loadNrrd(
+            nrrdUrl,
+            loadBar2,
+            true,
+            (volume, nrrdMesh, nrrdSlices, gui) => {
+              this.nrrdMeshes = nrrdMesh;
+              this.nrrdMeshes.x.name = "x";
+              this.nrrdMeshes.y.name = "y";
+              this.nrrdMeshes.z.name = "z";
+              this.scene.addObject(nrrdMesh.z);
+              this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
+              this.nrrdSliceZ = nrrdSlices.z;
 
-            // const nrrdOrigin = volume.header.space_origin.map((num) => Number(num));
-            const nrrdRas = volume.RASDimensions; 
+              // const nrrdOrigin = volume.header.space_origin.map((num) => Number(num));
+              const nrrdRas = volume.RASDimensions; 
 
-            const x_bias = -(nrrdRas[0]) / 2;
-            const y_bias = -(nrrdRas[1]) / 2;
-            const z_bias = -(nrrdRas[2]) / 2;
+              const x_bias = -(nrrdRas[0]) / 2;
+              const y_bias = -(nrrdRas[1]) / 2;
+              const z_bias = -(nrrdRas[2]) / 2;
 
-            this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
-            this.nrrdSliceZ = nrrdSlices.z;
+              this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
+              this.nrrdSliceZ = nrrdSlices.z;
 
-            this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
-            // bunding box
-            const geometry = new this.THREE.BoxGeometry( nrrdRas[0], nrrdRas[1], nrrdRas[2] ); 
-            const material = new this.THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
-            const cube = new this.THREE.Mesh( geometry, material ); 
-            const box = new this.THREE.BoxHelper( cube, 0xffffff );
-            this.scene.scene.add( box );
+              this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
+              // bunding box
+              const geometry = new this.THREE.BoxGeometry( nrrdRas[0], nrrdRas[1], nrrdRas[2] ); 
+              const material = new this.THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
+              const cube = new this.THREE.Mesh( geometry, material ); 
+              const box = new this.THREE.BoxHelper( cube, 0xffffff );
+              this.scene.scene.add( box );
 
-            if(this.currentView === "2D Mammogram"){
-              this.scene.controls.noRotate = true;
-              this.scene.controls.noPan = true;
-              this.removeContainerListener();
-            }else{
-              const data = {
-                nrrdSliceZ: this.nrrdSliceZ, 
-                nrrdMesh: this.nrrdMeshes.z, 
-                nrrdMaxIndex: this.nrrdMaxIndex
-              };
-              if(this.modelData[this.modelName] === undefined){
-                this.modelData[this.modelName] = {};
+              if(this.currentView === "2D Mammogram" || this.currentView === "2D Ultrasound"){
+                this.scene.controls.noRotate = true;
+                this.scene.controls.noPan = true;
+                this.removeContainerListener();
+              }else{
+                const data = {
+                  nrrdSliceZ: this.nrrdSliceZ, 
+                  nrrdMesh: this.nrrdMeshes.z, 
+                  nrrdMaxIndex: this.nrrdMaxIndex
+                };
+                if(this.modelData[this.modelName] === undefined){
+                  this.modelData[this.modelName] = {};
+                }
+                this.modelData[this.modelName]["middle"] = data;
+                this.addContainerListener();
               }
-              this.modelData[this.modelName]["middle"] = data;
-              this.addContainerListener();
-            }
-            loadingContainer.style.display = "none";
-          },
-          { openGui: false }
-        );
+              loadingContainer.style.display = "none";
+            },
+            { openGui: false }
+          );
+        // }
+        
 
         this.scene.loadViewUrl(viewURL);
         // this.scene.updateBackground("#f8cdd6", "#f8cdd6");
