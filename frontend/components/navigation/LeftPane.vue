@@ -5,7 +5,7 @@
     </div>
     <div v-if="$route.name == 'slug'">
       <!-- currentBg  -->
-      <div :class="currentBg" tile :style="panelHeightStyle">
+      <div :class="currentBg" :style="panelHeightStyle">
         <LeftModel />
       </div>
     </div>
@@ -38,7 +38,7 @@ export default {
         return {
           "min-height": this.panelHeight - 2 + "px",
         };
-      } else return { height: "auto" };
+      } else return { height: "24rem" };
     },
   },
 };

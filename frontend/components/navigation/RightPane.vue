@@ -8,7 +8,7 @@
     >
       <PanelControls />
       <div
-        class="fixed md:bottom-0 md:right-0 "
+        class="hidden md:flex md:fixed md:bottom-0 md:right-0 "
       >
          <logo/>
       </div>
