@@ -43,6 +43,10 @@ export default {
           "modelView/density-4/right/mri.nrrd",
           "modelView/density-4/right/mri_view.json",
         ],
+        cyst: [
+        "modelView/density-4/right/mri.nrrd",
+        "modelView/density-4/right/mri_view.json",
+        ]
       },
     };
   },

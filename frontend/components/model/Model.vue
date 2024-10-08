@@ -166,14 +166,6 @@ export default {
         
         this.baseRenderer.setCurrentScene(this.scene);
 
-        // if(this.currentView === "2D Ultrasound"){
-        //   this.scene.loadDicom(nrrdUrl, {
-        //     getMesh(mesh) {
-        //       console.log(mesh);
-        //       loadingContainer.style.display = "none";
-        //     },
-        //   });
-        // }else{
           this.scene.loadNrrd(
             nrrdUrl,
             loadBar2,
@@ -226,7 +218,6 @@ export default {
             },
             { openGui: false }
           );
-        // }
         
 
         this.scene.loadViewUrl(viewURL);
