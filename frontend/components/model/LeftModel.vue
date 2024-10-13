@@ -94,9 +94,10 @@ export default {
     },
     onNavChange(modelName) {
       this.navPanelName = modelName;
-      this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
+      // this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
     },
     start() {
+
       if (this.navPanelName === null) {
         this.loadModel(this.modelUrlsArray.normal[0], this.navPanelName+"left");
       }else{
@@ -105,6 +106,7 @@ export default {
     },
 
     loadModel(model_url, model_name) {
+
       let viewURL = "";
       if (this.navPanelName === null) {
         viewURL = this.modelUrlsArray.normal[1];
