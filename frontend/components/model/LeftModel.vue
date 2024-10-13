@@ -1,5 +1,5 @@
 <template>
-  <div :class="model_panel" ref="leftContainer" :style="panelStyle">
+  <div :class="model_panel" ref="leftContainer" :style="panelStyle" class="h-full">
     <div :class="model_title">
       <lazy-panel />
     </div>
@@ -33,6 +33,10 @@ export default {
           "modelView/density-3/left/left_breast_view.json",
         ],
         density_4:[
+          "modelView/density-4/left/density100.glb",
+          "modelView/density-4/left/left_breast_view.json",
+        ],
+        cyst: [
           "modelView/density-4/left/density100.glb",
           "modelView/density-4/left/left_breast_view.json",
         ]
@@ -90,9 +94,10 @@ export default {
     },
     onNavChange(modelName) {
       this.navPanelName = modelName;
-      this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
+      // this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
     },
     start() {
+
       if (this.navPanelName === null) {
         this.loadModel(this.modelUrlsArray.normal[0], this.navPanelName+"left");
       }else{
@@ -101,6 +106,7 @@ export default {
     },
 
     loadModel(model_url, model_name) {
+
       let viewURL = "";
       if (this.navPanelName === null) {
         viewURL = this.modelUrlsArray.normal[1];

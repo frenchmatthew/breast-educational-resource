@@ -6,6 +6,7 @@
     <div class="rightPanel">
       <div>
         <div class="pa-0 black">
+
           <Nuxt />
         </div>
       </div>
@@ -18,7 +19,7 @@
       <div class="pa-0">
         <v-row class="d-flex" no-gutters>
           <v-col>
-            <div class="pa-0" :class="mdAndUp ? 'full-height' : 'auto-height'">
+            <div class="pa-0" :class="mdAndUp ? 'full-height' : 'h-96'">
               <v-row class="d-flex flex-column" no-gutters>
                 <v-col ref="panel" class="out-card">
                   <v-card

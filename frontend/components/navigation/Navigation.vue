@@ -30,6 +30,7 @@
       <v-btn
         v-for="(topic, index) in topics"
         class="button-default"
+        :class="mdAndUp ? '' : 'btn-sm'"
         :key="index"
         :value="index"
         :disabled="$isTopicDisabled(topic)"
@@ -44,6 +45,7 @@
       </v-btn>
       <v-btn
         class="button-default"
+        :class="mdAndUp ? '' : 'btn-sm'"
         :to="{ name: 'about' }"
         @click="updateAbout()"
         :value="'about'"
@@ -88,7 +90,11 @@ export default {
     menuCaption() {
       return this.$route.name === "slug" ? this.$parentTopic().slug : "about";
     },
+    mdAndUp() {
+      return this.$vuetify.breakpoint.mdAndUp;
+    },
   },
+
 
   watch: {
     selectedTopic: function (currentTopic) {
@@ -122,7 +128,7 @@ export default {
   width: 100%;
 }
 
-.v-btn.button-default {
+.button-default {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -150,4 +156,9 @@ export default {
   ); /* Standard syntax */
   border-left: 2px rgb(5, 5, 5) solid;
 }
+.btn-sm{
+  width: 100px !important;
+  min-width: 0 !important;
+}
+
 </style>

@@ -24,13 +24,13 @@ export default {
     htmlAttrs: {
       lang: "en",
     },
-    link: [
-      {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "/breast-educational-resource/favicon2.ico",
-      },
-    ],
+    // link: [
+    //   {
+    //     rel: "icon",
+    //     type: "image/x-icon",
+    //     href: "/breast-educational-resource/favicon2.ico",
+    //   },
+    // ],
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -76,7 +76,7 @@ export default {
   ],
   server: {
     host: "0.0.0.0", // default: localhost
-    port: 3055, // default: 3000
+    port: 3158, // default: 3000
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
