@@ -160,6 +160,7 @@ export default {
   // border-left: 1px solid black;
   margin: 0;
   padding: 0;
+  background: linear-gradient(81deg, rgba(254,205,211,0.8) 0%, rgba(253,164,175,0.8) 0%, rgba(251,113,133,0.8) 100%);
 }
 
 .rightPanel {

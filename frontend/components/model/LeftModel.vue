@@ -121,7 +121,7 @@ export default {
       if (this.scene === undefined) {
         this.scene = this.baseRenderer.createScene(model_name);
         this.scene.addLights();
-        this.scene.controls.rotateSpeed = 5.0;
+        this.scene.controls.rotateSpeed = 3.0;
         this.scene.controls.panSpeed = 0.2;
         this.baseRenderer.setCurrentScene(this.scene);
 
