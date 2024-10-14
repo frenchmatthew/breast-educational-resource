@@ -1,46 +1,37 @@
 <template>
-  <v-app ref="base_background" class="root">
-    <div v-show="load_app" class="loading">
+  <v-app ref="base_background" class="select-none p-0 m-0 ">
+    <div v-show="loadApp" class="loading">
       <loading-bar />
     </div>
-    <div class="rightPanel">
-      <div>
-        <div class="pa-0 black">
-
-          <Nuxt />
-        </div>
-      </div>
+    <div class="rightPanel pa-0">
+      <Nuxt />
     </div>
     <div
       class="firefox"
       :class="mdAndUp ? 'outer-large' : 'outer-small'"
       ref="leftPanel"
     >
-      <div class="pa-0">
-        <v-row class="d-flex" no-gutters>
-          <v-col>
-            <div class="pa-0" :class="mdAndUp ? 'full-height' : 'h-96'">
-              <v-row class="d-flex flex-column" no-gutters>
-                <v-col ref="panel" class="out-card">
-                  <v-card
-                    outlined
-                    tile
-                    class="pa-0 transparent"
-                    :class="mdAndUp ? 'panel-height' + multiplier : ''"
-                  >
-                    <left-pane :panel-height="panelHeight" />
-                  </v-card>
-                </v-col>
-                <v-col class="d-none d-md-block fix-it">
-                  <navigation />
-                </v-col>
-              </v-row>
-            </div>
-          </v-col>
-        </v-row>
-        <div class="d-md-none fixed left-0 bottom-0">
-          <navigation />
-        </div>
+      <v-row class="flex" no-gutters>
+        <div class="pa-0 w-full" :class="mdAndUp ? 'full-height' : 'h-96'">
+            <v-row class="d-flex flex-column" no-gutters>
+              <v-col ref="panel" class="out-card">
+                <v-card
+                  outlined
+                  tile
+                  class="pa-0 transparent"
+                  :class="mdAndUp ? 'panel-height' + multiplier : ''"
+                >
+                  <left-pane :panel-height="panelHeight" />
+                </v-card>
+              </v-col>
+              <v-col class="d-none d-md-block fix-it">
+                <navigation />
+              </v-col>
+            </v-row>
+          </div>
+      </v-row>
+      <div class="flex fixed md:hidden left-0 bottom-0">
+        <navigation />
       </div>
     </div>
   </v-app>
@@ -55,13 +46,13 @@ export default {
       multiplier: 1,
       panelHeight: 0,
       isVideo: true,
-      load_app: true,
+      loadApp: true,
     };
   },
 
   computed: {
     mdAndUp() {
-      this.load_app = false;
+      // this.loadApp = false;
       return this.$vuetify.breakpoint.mdAndUp;
     },
   },
@@ -76,7 +67,7 @@ export default {
         this.panelHeight = this.$refs.panel.clientHeight;
       }, 200);
     };
-
+    this.$nuxt.$on("finishLoad", this.onFinishLoad);
     document.addEventListener("fullscreenchange", () => {
       updateFullscreen();
     });
@@ -88,11 +79,19 @@ export default {
     });
   },
 
+  methods: {
+    onFinishLoad() {
+      this.loadApp = false;
+    },
+  },
+
   watch: {
     panelHeight: (height) => {},
   },
 
   updated() {
+    console.log("updated", this.$refs.panel.clientHeight);
+    
     this.panelHeight = this.$refs.panel.clientHeight;
   },
 
@@ -114,11 +113,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.root {
-  user-select: none;
-  margin: 0;
-  padding: 0;
-}
+
 .loading {
   position: fixed;
   top: 0;
@@ -133,7 +128,7 @@ export default {
 }
 .outer-large {
   min-width: 499px;
-  width: 33vw;
+  width: 30vw;
   position: fixed;
   top: 0;
   left: 0;
@@ -162,7 +157,7 @@ export default {
   opacity: 0.8;
 }
 .out-card {
-  border-left: 1px solid black;
+  // border-left: 1px solid black;
   margin: 0;
   padding: 0;
 }

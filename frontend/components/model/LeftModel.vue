@@ -1,4 +1,5 @@
 <template>
+  
   <div :class="model_panel" ref="leftContainer" :style="panelStyle" class="h-full">
     <div :class="model_title">
       <lazy-panel />
@@ -73,7 +74,9 @@ export default {
 
     window.addEventListener("resize", () => {
       setTimeout(() => {
-        if (!!this.scene) this.scene.onWindowResize();
+        if (!!this.scene) {
+          this.scene.onWindowResize();
+        }
       }, 500);
     });
   },
@@ -134,6 +137,8 @@ export default {
               });
             }
           });
+
+          this.scene.onWindowResize();
         });
         this.scene.loadViewUrl(viewURL);
          

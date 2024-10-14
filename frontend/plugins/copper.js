@@ -6,7 +6,7 @@ const modelToScenes = {};
 
 const container = document.createElement("div");
 container.style.width = "100vw";
-container.style.height = "100vh";
+container.style.height = "100%";
 container.style.margin = 0;
 container.style.padding = 0;
 const guiOpen = false;

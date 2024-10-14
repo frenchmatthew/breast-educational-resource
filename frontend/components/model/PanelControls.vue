@@ -5,7 +5,7 @@
       <span class="text-black text-base font-thin">{{ modelControl }}</span>
     </div>
 
-    <div ref="rightContainer" class="w-full h-full">
+    <div ref="rightContainer" class="w-full h-full" :class="mdAndUp ? 'baseDom-md' : 'baseDom-sm'">
     </div>
   </div>
 </template>
@@ -50,6 +50,11 @@ export default {
       },
     };
   },
+  computed: {
+    mdAndUp() {
+      return this.$vuetify.breakpoint.mdAndUp;
+    },
+  },
   mounted() {
     this.Copper = this.$Copper();
     this.THREE = this.$three();
@@ -66,6 +71,7 @@ export default {
     if(["cyst", "fibroadenoma", "calcifications", "fat_necrosis", "dcis", "lobular", "ductal"].includes(this.modelName)){
       this.modelName = "normal";
     }
+    
     
     this.start();
 
@@ -89,7 +95,7 @@ export default {
       if (this.scene === undefined) {
         this.scene = this.baseRenderer.createScene(modelName);
         // this.scene.controls.staticMoving = true;
-        this.scene.controls.rotateSpeed = 0.5;
+        this.scene.controls.rotateSpeed = 1;
         this.scene.controls.minDistance = 500;
         this.scene.controls.maxDistance = 3000;
         this.scene.controls.panSpeed = 0.5;
@@ -231,5 +237,18 @@ box-shadow:  5px 5px 10px #e4949e,
     width: 500px;
     height: 500px;
   }
+}
+
+.baseDom-md {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.baseDom-sm {
+  width: 100vw;
+  height: 100vw;
+  margin: 0;
+  padding: 0;
 }
 </style>

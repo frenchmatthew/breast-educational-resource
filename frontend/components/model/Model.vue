@@ -1,14 +1,14 @@
 <template>
-  <div class="model ">
-      <v-tabs class="fixed flex justify-center tab-main" @change="tabsOnChange">
+  <div class="model h-full">
+      <v-tabs class="absolute  flex justify-center tab-main" @change="tabsOnChange">
         <v-tab class="tab-sub w-40">{{ tab1 }}</v-tab>
         <v-tab class="tab-sub w-40">{{ tab2 }}</v-tab>
       </v-tabs>
     
-    <div ref="baseDomObject" :class="mdAndUp ? 'baseDom-md' : 'baseDom-sm'" />
+    <div ref="baseDomObject" class="h-full" :class="mdAndUp ? 'baseDom-md' : 'baseDom-sm'" />
     <div
         ref="threeDControls"
-        class="baseModelControl"
+        class="hidden baseModelControl md:flex"
         :class="mdAndUp ? 'baseModelControl-md' : 'baseModelControl-sm'"
       >
         <div class="baseModelCB" :class="mdAndUp ? 'baseModelCB-md' : ''">
@@ -110,8 +110,16 @@ export default {
       this.modelName = "normal";
     }
 
-    
     this.container.appendChild(this.baseContainer);
+
+    // setTimeout(() => {
+    //   this.mdAndUp
+    //     ? (this.baseContainer.style.height = "100vh")
+    //     : (this.baseContainer.style.height = "100vw");
+    //   this.container.appendChild(this.baseContainer);
+    //   this.start();
+    // }, 100);
+
     this.start();
 
     window.addEventListener("resize", () => {
@@ -213,6 +221,8 @@ export default {
                 }
                 this.modelData[this.modelName]["middle"] = data;
                 this.addContainerListener();
+                this.scene.onWindowResize();
+                $nuxt.$emit("finishLoad", true);
               }
               loadingContainer.style.display = "none";
             },
@@ -240,11 +250,13 @@ export default {
       this.scene.onWindowResize();
     },
     addContainerListener() {
-      const data = this.modelData[this.modelName]["middle"];
-      if(this.mouseActions === null){
-          this.mouseActions = this.raycaster(this.scene, this.container, data.nrrdSliceZ, data.nrrdMesh, data.nrrdMaxIndex);
-        }
-      this.container.addEventListener("pointermove", this.mouseActions.mouseMove);
+      if(!!this.modelData[this.modelName]){
+        const data = this.modelData[this.modelName]["middle"];
+        if(this.mouseActions === null){
+            this.mouseActions = this.raycaster(this.scene, this.container, data.nrrdSliceZ, data.nrrdMesh, data.nrrdMaxIndex);
+          }
+        this.container.addEventListener("pointermove", this.mouseActions.mouseMove);
+      }
     },
     removeContainerListener() {
       if(this.mouseActions !== null){
@@ -277,11 +289,23 @@ export default {
   background: rgb(251,113,133);
   background: linear-gradient(90deg, rgba(251,113,133,1) 0%, rgba(253,164,175,1) 48%, rgba(251,113,133,1) 100%);
 }
+
+.baseDom-md {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.baseDom-sm {
+  width: 100vw;
+  height: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
 .baseModelControl {
   width: 100vw;
   height: 120px;
-  // background: red;
-  display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
