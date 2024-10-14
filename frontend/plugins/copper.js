@@ -107,6 +107,7 @@ const raycaster = (scene, container, nrrdSliceZ, nrrdMesh, nrrdMaxIndex) => {
     }else{
       findMesh = false;
       scene.controls.noRotate = false;
+      userMouseDown = false;
       container.style.cursor = "auto";
       container.removeEventListener("pointerdown", mouseDown);
       container.removeEventListener("pointerup", mouseUp);

@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      modelControl: "MRI",
+      modelControl: "3D MRI",
       Copper: null,
       THREE: null,
       baseRenderer: null,
