@@ -1,4 +1,5 @@
 <template>
+  
   <div :class="model_panel" ref="leftContainer" :style="panelStyle" class="h-full">
     <div :class="model_title">
       <lazy-panel />
@@ -73,7 +74,9 @@ export default {
 
     window.addEventListener("resize", () => {
       setTimeout(() => {
-        if (!!this.scene) this.scene.onWindowResize();
+        if (!!this.scene) {
+          this.scene.onWindowResize();
+        }
       }, 500);
     });
   },
@@ -97,6 +100,7 @@ export default {
       this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
     },
     start() {
+
       if (this.navPanelName === null) {
         this.loadModel(this.modelUrlsArray.normal[0], this.navPanelName+"left");
       }else{
@@ -105,6 +109,7 @@ export default {
     },
 
     loadModel(model_url, model_name) {
+
       let viewURL = "";
       if (this.navPanelName === null) {
         viewURL = this.modelUrlsArray.normal[1];
@@ -132,6 +137,8 @@ export default {
               });
             }
           });
+
+          this.scene.onWindowResize();
         });
         this.scene.loadViewUrl(viewURL);
          

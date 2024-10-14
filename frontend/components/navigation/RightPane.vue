@@ -1,10 +1,10 @@
 <template>
-  <div class="parent">
-    <div class="model-panel">
+  <div class="w-screen h-screen flex flex-col md:flex-row right-panel">
+    <div class="flex-1">
       <model />
     </div>
     <div
-      class="flex flex-col justify-center items-center md:fixed md:right-0 md:top-0 md:h-full md:w-1/4"
+      class="flex-1 flex flex-col justify-center items-center md:fixed md:right-0 md:top-0 md:h-full md:w-1/4"
     >
       <PanelControls />
       <div
@@ -41,35 +41,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.parent {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
+.right-panel {
+  background: rgb(251,113,133);
+  background: linear-gradient(90deg, rgba(251,113,133,1) 0%, rgba(253,164,175,1) 48%, rgba(251,113,133,1) 100%);
 }
-.model-panel {
-  // width: 100vw;
-  // height: auto;
-  flex: 1;
-}
-.model-rate {
-  position: relative;
-  width: 100%;
-  text-align: center;
-}
-
-.rate-mdAndUp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-height: 20%;
-  .heart-rate {
-    margin-top: 10px;
-    width: 60%;
-    height: 100px;
-  }
-}
-
 .logo-mdAndUp {
   width: 50%;
   // height: 100px;
@@ -80,31 +55,4 @@ export default {
   height: 10%;
 }
 
-.trace-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 25px 3px;
-}
-.tracePanel-md {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  min-width: 280px;
-  max-width: 25vw;
-}
-.tracePanel-sm {
-  width: 100vw;
-  height: auto;
-}
-.trace-md {
-  min-height: 60%;
-}
-.trace-sm {
-  width: 100%;
-  margin-bottom: 100px;
-  padding-right: 10px;
-}
 </style>
