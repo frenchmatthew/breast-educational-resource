@@ -23,7 +23,7 @@
       "1": {
         "title": "1",
         "heading": "Almost entirely fat",
-        "icon": "mdi-home-heart",
+        "icon": "mdi-dots-horizontal",
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
@@ -32,7 +32,7 @@
       "2": {
         "title": "2",
         "heading": "Scattered fibroglandular densities",
-        "icon": "mdi-home-heart",
+        "icon": "mdi-dots-triangle",
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
@@ -41,7 +41,7 @@
       "3": {
         "title": "3",
         "heading": "Heterogeneously dense",
-        "icon": "mdi-home-heart",
+        "icon": "mdi-dots-hexagon",
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
@@ -50,7 +50,7 @@
       "4": {
         "title": "4",
         "heading": "Extremely dense",
-        "icon": "mdi-home-heart",
+        "icon": "mdi-dots-circle",
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
