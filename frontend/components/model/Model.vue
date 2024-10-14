@@ -6,6 +6,16 @@
       </v-tabs>
     
     <div ref="baseDomObject" class="h-full" :class="mdAndUp ? 'baseDom-md' : 'baseDom-sm'" />
+    
+    <div class="md:hidden flex fixed bottom-20 right-5 cursor-pointer">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+      <v-avatar color="pink lighten-2" @click="onResetAllModelsView">
+        <v-icon dark>
+          mdi-refresh
+        </v-icon>
+      </v-avatar>
+    </div>
+    
     <div
         ref="threeDControls"
         class="hidden baseModelControl md:flex"
@@ -169,7 +179,7 @@ export default {
       if (this.scene === undefined) {
         this.scene = this.baseRenderer.createScene(modelName);
         // this.scene.controls.staticMoving = true;
-        this.scene.controls.rotateSpeed = 5.0;
+        this.scene.controls.rotateSpeed = 3.0;
         this.scene.controls.panSpeed = 0.5;
         
         this.baseRenderer.setCurrentScene(this.scene);

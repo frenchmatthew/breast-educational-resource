@@ -95,7 +95,7 @@ export default {
       if (this.scene === undefined) {
         this.scene = this.baseRenderer.createScene(modelName);
         // this.scene.controls.staticMoving = true;
-        this.scene.controls.rotateSpeed = 1;
+        this.scene.controls.rotateSpeed = 3.0;
         this.scene.controls.minDistance = 500;
         this.scene.controls.maxDistance = 3000;
         this.scene.controls.panSpeed = 0.5;
