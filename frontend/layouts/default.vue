@@ -1,5 +1,5 @@
 <template>
-  <v-app ref="base_background" class="select-none p-0 m-0 ">
+  <v-app ref="base_background" class="select-none p-0 m-0">
     <div v-show="loadApp" class="loading">
       <loading-bar />
     </div>
@@ -166,4 +166,5 @@ export default {
 .rightPanel {
   order: 2;
 }
+
 </style>
