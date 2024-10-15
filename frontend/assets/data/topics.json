@@ -27,7 +27,7 @@
         "dataFile": "breast-main",
         "category": "success",
         "subTitle": "subSuccess",
-        "model": { "name": "normal" }
+        "model": { "name": "density_1" }
       },
       "2": {
         "title": "2",
@@ -89,15 +89,6 @@
         "category": "success",
         "subTitle": "subSuccess",
         "model": { "name": "calcifications" }
-      },
-      "fat_necrosis": {
-        "title": "Fat necrosis",
-        "heading": "Fat necrosis",
-        "icon": "mdi-home-heart",
-        "dataFile": "breast-main",
-        "category": "success",
-        "subTitle": "subSuccess",
-        "model": { "name": "fat_necrosis" }
       }
     }
   },
@@ -134,10 +125,5 @@
         "model": { "name": "ductal" }
       }
     }
-  },
-  "action": {
-    "title": "Action",
-    "heading": "Call to Action",
-    "subTopics": {}
   }
 }

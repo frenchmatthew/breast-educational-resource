@@ -87,6 +87,7 @@ export default {
     "@/plugins/topics",
     "@/plugins/current-content",
     "@/plugins/models",
+    "@/plugins/data",
     { src: "~/plugins/copper.js", ssr: false },
   ],
 

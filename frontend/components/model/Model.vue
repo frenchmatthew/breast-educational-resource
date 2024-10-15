@@ -1,9 +1,13 @@
 <template>
-  <div class="model h-full">
+  <div class="model h-full relative">
       <v-tabs class="absolute  flex justify-center tab-main" @change="tabsOnChange">
         <v-tab class="tab-sub w-40">{{ tab1 }}</v-tab>
         <v-tab class="tab-sub w-40">{{ tab2 }}</v-tab>
       </v-tabs>
+
+      <div class="absolute w-full top-24 flex justify-center items-center text-gray-950 text-xs">
+      <div class="w-1/4 text-left" v-html="middlePanelText[modelName]"></div>
+    </div>
     
     <div ref="baseDomObject" class="h-full" :class="mdAndUp ? 'baseDom-md' : 'baseDom-sm'" />
     
@@ -54,9 +58,16 @@ export default {
       tab2: "2D Mammogram",
       currentView: "3D Mammogram",
       mouseActions: null,
+      modelName: null,
+      middlePanelText: {},
       modelToScenes:{},
       modelUrlsArray:{
         normal: [
+          "modelView/density-1/middle/m3d.nrrd",
+          "modelView/density-1/middle/m_view.json",
+          "modelView/density-1/middle/m2d.nrrd"
+        ],
+        density_1: [
           "modelView/density-1/middle/m3d.nrrd",
           "modelView/density-1/middle/m_view.json",
           "modelView/density-1/middle/m2d.nrrd"
@@ -81,6 +92,31 @@ export default {
           "modelView/benign-cyst/middle/m_view.json",
           "modelView/benign-cyst/middle/u2d.nrrd",
           "modelView/benign-cyst/middle/u_view.json",
+        ],
+        fibroadenoma:[
+          "modelView/density-1/middle/m3d.nrrd",
+          "modelView/density-1/middle/m_view.json",
+          "modelView/density-1/middle/m2d.nrrd"
+        ],
+        calcifications:[
+          "modelView/density-1/middle/m3d.nrrd",
+          "modelView/density-1/middle/m_view.json",
+          "modelView/density-1/middle/m2d.nrrd"
+        ],
+        dcis:[
+          "modelView/density-1/middle/m3d.nrrd",
+          "modelView/density-1/middle/m_view.json",
+          "modelView/density-1/middle/m2d.nrrd"
+        ],
+        lobular:[
+          "modelView/density-1/middle/m3d.nrrd",
+          "modelView/density-1/middle/m_view.json",
+          "modelView/density-1/middle/m2d.nrrd"
+        ],
+        ductal:[
+          "modelView/density-1/middle/m3d.nrrd",
+          "modelView/density-1/middle/m_view.json",
+          "modelView/density-1/middle/m2d.nrrd"
         ]
       },
     };
@@ -108,6 +144,7 @@ export default {
     this.modelData = this.$modelData();
     this.container = this.$refs.baseDomObject;
     this.modelName = this.$model().name;
+    this.middlePanelText = this.$middlePanelText();
 
     if(this.modelName === "cyst"){
       this.tab2 = "2D Ultrasound";
@@ -116,9 +153,6 @@ export default {
     }
 
     this.$nuxt.$emit("onNavChange", this.modelName);
-    if(["fibroadenoma", "calcifications", "fat_necrosis", "dcis", "lobular", "ductal"].includes(this.modelName)){
-      this.modelName = "normal";
-    }
 
     this.container.appendChild(this.baseContainer);
 
@@ -145,6 +179,7 @@ export default {
 
   methods: {
     async start() {
+ 
       this.loadNrrd(this.modelUrlsArray[this.modelName][0], this.modelName+"middle_3d");
     },
 
