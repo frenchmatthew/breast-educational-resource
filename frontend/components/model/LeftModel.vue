@@ -1,6 +1,9 @@
 <template>
   
-  <div :class="model_panel" ref="leftContainer" :style="panelStyle" class="h-full">
+  <div :class="model_panel" ref="leftContainer" :style="panelStyle" class="h-full relative">
+    <div class="hidden md:flex absolute w-full top-24 flex justify-center items-center text-gray-950 text-xs">
+      <div class="w-4/5 text-left" v-html="leftPanelText[navPanelName]"></div>
+    </div>
     <div :class="model_title">
       <lazy-panel />
     </div>
@@ -20,8 +23,14 @@ export default {
       model_title: null,
       modelToScenes: {},
       navPanelName: null,
+      leftPanelText: {},
+      showText: false,
       modelUrlsArray:{
         normal: [
+          "modelView/density-1/left/density25.glb",
+          "modelView/density-1/left/left_breast_view.json",
+        ],
+        density_1: [
           "modelView/density-1/left/density25.glb",
           "modelView/density-1/left/left_breast_view.json",
         ],
@@ -40,6 +49,26 @@ export default {
         cyst: [
           "modelView/density-4/left/density100.glb",
           "modelView/density-4/left/left_breast_view.json",
+        ],
+        fibroadenoma:[
+          "modelView/density-1/left/density25.glb",
+          "modelView/density-1/left/left_breast_view.json",
+        ],
+        calcifications:[
+          "modelView/density-1/left/density25.glb",
+          "modelView/density-1/left/left_breast_view.json",
+        ],
+        dcis:[
+          "modelView/density-1/left/density25.glb",
+          "modelView/density-1/left/left_breast_view.json",
+        ],
+        lobular:[
+          "modelView/density-1/left/density25.glb",
+          "modelView/density-1/left/left_breast_view.json",
+        ],
+        ductal:[
+          "modelView/density-1/left/density25.glb",
+          "modelView/density-1/left/left_breast_view.json",
         ]
       },
     };
@@ -60,6 +89,7 @@ export default {
     this.baseContainer = this.$baseLeftContainer();
     this.container = this.$refs.leftContainer;
     this.modelToScenes = this.$modelToScenes();
+    this.leftPanelText = this.$leftPanelText();
 
     this.container.appendChild(this.baseContainer);
 
@@ -68,7 +98,7 @@ export default {
     this.model_title = "model_title";
     this.$nuxt.$on("onNavChange", this.onNavChange);
     
-    
+    !!this.navPanelName ? this.navPanelName : (this.navPanelName = this.$model().name);
 
     this.start();
 
@@ -97,6 +127,8 @@ export default {
     },
     onNavChange(modelName) {
       this.navPanelName = modelName;
+      console.log(modelName);
+      
       this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
     },
     start() {

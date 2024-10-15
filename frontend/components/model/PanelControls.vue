@@ -1,8 +1,12 @@
 <template>
   <!-- <div class="w-full h-full border-l border-rose-300 p-4"> -->
-  <div class="w-full h-full r_main">
+  <div class="w-full h-full r_main relative">
     <div class="absolute flex  justify-center items-center top-0 right-0 w-full h-11 p-1 my-2">
       <span class="text-black text-base font-thin">{{ modelControl }}</span>
+    </div>
+
+    <div class="hidden md:flex absolute w-full top-24 flex justify-center items-center text-gray-950 text-xs">
+      <div class="w-4/5 text-left" v-html="rightPanelText[modelName]"></div>
     </div>
 
     <div ref="rightContainer" class="w-full h-full" :class="mdAndUp ? 'baseDom-md' : 'baseDom-sm'">
@@ -25,9 +29,14 @@ export default {
       modelData: null,
       modelToScenes:{},
       modelName: null,
+      rightPanelText: {},
       mouseActions: null,
       modelUrlsArray:{
         normal: [
+          "modelView/density-1/right/mri.nrrd",
+          "modelView/density-1/right/mri_view.json",
+        ],
+        density_1: [
           "modelView/density-1/right/mri.nrrd",
           "modelView/density-1/right/mri_view.json",
         ],
@@ -46,6 +55,26 @@ export default {
         cyst: [
         "modelView/density-4/right/mri.nrrd",
         "modelView/density-4/right/mri_view.json",
+        ],
+        fibroadenoma:[
+          "modelView/density-1/right/mri.nrrd",
+          "modelView/density-1/right/mri_view.json",
+        ],
+        calcifications:[
+          "modelView/density-1/right/mri.nrrd",
+          "modelView/density-1/right/mri_view.json",
+        ],
+        dcis:[
+          "modelView/density-1/right/mri.nrrd",
+          "modelView/density-1/right/mri_view.json",
+        ],
+        lobular:[
+          "modelView/density-1/right/mri.nrrd",
+          "modelView/density-1/right/mri_view.json",
+        ],
+        ductal:[
+          "modelView/density-1/right/mri.nrrd",
+          "modelView/density-1/right/mri_view.json",
         ]
       },
     };
@@ -64,14 +93,11 @@ export default {
     this.baseContainer = this.$baseRightContainer();
     this.modelData = this.$modelData();
     this.container = this.$refs.rightContainer;
+    this.rightPanelText = this.$rightPanelText();
 
     this.container.appendChild(this.baseContainer);
     // Write code after mount this component
     this.modelName = this.$model().name;
-    if(["cyst", "fibroadenoma", "calcifications", "fat_necrosis", "dcis", "lobular", "ductal"].includes(this.modelName)){
-      this.modelName = "normal";
-    }
-    
     
     this.start();
 
