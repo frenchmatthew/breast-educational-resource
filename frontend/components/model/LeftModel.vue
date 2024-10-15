@@ -1,8 +1,8 @@
 <template>
   
   <div :class="model_panel" ref="leftContainer" :style="panelStyle" class="h-full relative">
-    <div class="absolute w-full top-24 flex justify-center items-center text-gray-950 text-xs ">
-        <div class="w-4/5 text-left" v-html="leftPanelText[navPanelName]"></div>
+    <div class="hidden md:flex absolute w-full top-24 flex justify-center items-center text-gray-950 text-xs">
+      <div class="w-4/5 text-left" v-html="leftPanelText[navPanelName]"></div>
     </div>
     <div :class="model_title">
       <lazy-panel />

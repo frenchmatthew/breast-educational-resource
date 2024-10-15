@@ -5,7 +5,7 @@
         <v-tab class="tab-sub w-40">{{ tab2 }}</v-tab>
       </v-tabs>
 
-      <div class="absolute w-full top-24 flex justify-center items-center text-gray-950 text-xs">
+    <div class="hidden md:flex absolute w-full top-24 flex justify-center items-center text-gray-950 text-xs">
       <div class="w-1/4 text-left" v-html="middlePanelText[modelName]"></div>
     </div>
     
