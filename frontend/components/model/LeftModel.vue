@@ -100,7 +100,7 @@ export default {
     
     !!this.navPanelName ? this.navPanelName : (this.navPanelName = this.$model().name);
 
-    // this.start();
+    this.start();
 
     window.addEventListener("resize", () => {
       setTimeout(() => {
