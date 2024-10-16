@@ -44,12 +44,12 @@ const rightBoundingBoxIndex = {
     "density_2": 0,
     "density_3": 0,
     "density_4": 0,
-    "cyst": 56,
+    "cyst": 58,
     "fibroadenoma": 0,
     "calcifications": 0,
-    "dcis": 0,
+    "dcis": 80,
     "lobular": 0,
-    "ductal": 0,
+    "ductal": 33,
 }
 
 export default (context, inject) => {
