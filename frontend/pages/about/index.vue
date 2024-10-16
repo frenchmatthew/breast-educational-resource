@@ -1,41 +1,19 @@
 <template>
   <div :class="mdAndUp ? 'aboutPanel-l' : 'aboutPanel-s'">
-    <div
-      v-if="section == 'research'"
-      class="container-default research-page flexbox --vertical"
-      :class="$vuetify.breakpoint.smAndUp ? 'full-height' : ''"
-    >
-      <div class="pt-4 heading">
-        <h3 class="heading__main">
-          Breast Cancer Research at the Auckland Bioengineering Institute
-        </h3>
-        <!-- <div class="heading__sub">
-          Improving diagnosis and management of heart diseases<span
-            v-if="$vuetify.breakpoint.mdAndUp"
-            ><br
-          /></span>
-          using personalised biomechanics and image-driven computer modelling
-        </div> -->
-      </div>
-    </div>
+    
     <div
       v-if="section == 'team'"
       class="container-default research-page flexbox --vertical"
       :class="$vuetify.breakpoint.mdAndUp ? 'full-height' : ''"
     >
-      <div class="pt-4 heading">
-        <h3 class="heading__main">Our Heart Mechanics Research Team</h3>
-        <div class="heading__sub pt-2">
-          An inter-disciplinary collaboration between experts in
-          <span v-if="$vuetify.breakpoint.smAndUp"><br /></span>
-          bioengineering, physiology, software development, and medical imaging
-        </div>
+      <div class="pt-1 heading">
+        <h3 class="heading__main">Our Breast Biomechanics Research Team</h3>
       </div>
       <div class="detail">
         <!-- <img src="~assets/images/headshots.png" /> -->
       </div>
       <div class="detail">
-        <!-- <img src="~assets/images/funding-abi-medtech.png" /> -->
+        <img src="~assets/images/team.jpg" />
       </div>
     </div>
   </div>
@@ -48,7 +26,7 @@ export default {
 
   data() {
     return {
-      section: "research",
+      section: "team",
     };
   },
   computed: {
@@ -58,9 +36,9 @@ export default {
   },
   created() {
     this.$nuxt.$on("about-navigation", (componentName) => {
-      this.section = componentName;
+      this.section = "team";
     });
-    this.$store.commit("setChartLoaded", "");
+    // this.$store.commit("setChartLoaded", "");
   },
 
   beforeDestroy() {
