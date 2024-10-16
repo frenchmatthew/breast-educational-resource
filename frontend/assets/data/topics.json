@@ -80,15 +80,6 @@
         "category": "success",
         "subTitle": "subSuccess",
         "model": { "name": "fibroadenoma" }
-      },
-      "calcifications": {
-        "title": "Calcifications",
-        "heading": "Calcifications",
-        "icon": "mdi-home-heart",
-        "dataFile": "breast-main",
-        "category": "success",
-        "subTitle": "subSuccess",
-        "model": { "name": "calcifications" }
       }
     }
   },

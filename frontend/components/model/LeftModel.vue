@@ -25,50 +25,40 @@ export default {
       navPanelName: null,
       leftPanelText: {},
       showText: false,
+      leftBreastView: "modelView/left_breast_view.json",
       modelUrlsArray:{
         normal: [
           "modelView/density-1/left/density25.glb",
-          "modelView/density-1/left/left_breast_view.json",
         ],
         density_1: [
           "modelView/density-1/left/density25.glb",
-          "modelView/density-1/left/left_breast_view.json",
         ],
         density_2:[
           "modelView/density-2/left/density50.glb",
-          "modelView/density-2/left/left_breast_view.json",
         ],
         density_3:[
           "modelView/density-3/left/density75.glb",
-          "modelView/density-3/left/left_breast_view.json",
         ],
         density_4:[
           "modelView/density-4/left/density100.glb",
-          "modelView/density-4/left/left_breast_view.json",
         ],
         cyst: [
-          "modelView/density-4/left/density100.glb",
-          "modelView/density-4/left/left_breast_view.json",
+          "modelView/benign-cyst/left/density100.glb",
         ],
         fibroadenoma:[
-          "modelView/density-1/left/density25.glb",
-          "modelView/density-1/left/left_breast_view.json",
+          "modelView/benign-fib/left/density100.glb",
         ],
         calcifications:[
-          "modelView/density-1/left/density25.glb",
-          "modelView/density-1/left/left_breast_view.json",
+          "modelView/density-1/left/density100.glb",
         ],
         dcis:[
-          "modelView/density-1/left/density25.glb",
-          "modelView/density-1/left/left_breast_view.json",
+          "modelView/cancer-dcis/left/density100.glb",
         ],
         lobular:[
-          "modelView/density-1/left/density25.glb",
-          "modelView/density-1/left/left_breast_view.json",
+          "modelView/cancer-lobular/left/density100.glb",
         ],
         ductal:[
-          "modelView/density-1/left/density25.glb",
-          "modelView/density-1/left/left_breast_view.json",
+          "modelView/cancer-ductal/left/density100.glb",
         ]
       },
     };
@@ -142,12 +132,7 @@ export default {
 
     loadModel(model_url, model_name) {
 
-      let viewURL = "";
-      if (this.navPanelName === null) {
-        viewURL = this.modelUrlsArray.normal[1];
-      } else {
-        viewURL = this.modelUrlsArray[this.navPanelName][1];
-      }
+      let viewURL = this.leftBreastView;
       this.scene = this.baseRenderer.getSceneByName(model_name);
 
       if (this.scene === undefined) {

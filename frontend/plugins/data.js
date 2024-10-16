@@ -38,14 +38,31 @@ const rightPanelText = {
     "ductal": "MRI is  useful in the evaluation of dense breasts in young women; lesions that can be felt but are not seen on other imaging; or when breast cancer cells have been found in underarm lymph nodes, but no tumour can be seen in the breast on other imaging. It can also add important information regarding lesions seen on a mammogram.",
 }
 
+const rightBoundingBoxIndex = {
+    "normal": 0,
+    "density_1": 0,
+    "density_2": 0,
+    "density_3": 0,
+    "density_4": 0,
+    "cyst": 56,
+    "fibroadenoma": 0,
+    "calcifications": 0,
+    "dcis": 0,
+    "lobular": 0,
+    "ductal": 0,
+}
+
 export default (context, inject) => {
     inject("leftPanelText", () => {
         return leftPanelText;
-      }),
+    }),
     inject("middlePanelText", () => {
-    return middlePanelText;
+        return middlePanelText;
     }),
     inject("rightPanelText", () => {
-    return rightPanelText;
+        return rightPanelText;
+    }),
+    inject("rightBoundingBoxIndex", () => {
+        return rightBoundingBoxIndex;
     })
 }
