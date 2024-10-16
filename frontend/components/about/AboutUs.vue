@@ -3,14 +3,14 @@
     <h1 class="pt-2 main-heading">About Us</h1>
     <div class="about-panel">
       <div class="navigate flexbox --vertical lg:-mt-10">
-        <div
+        <!-- <div
           class="button"
           :class="researchSelected ? 'button --active' : 'button --inactive'"
         >
           <v-btn plain @click="toggleNavigation('research')">
             Our Research
           </v-btn>
-        </div>
+        </div> -->
         <div
           class="button"
           :class="teamSelected ? 'button --active' : 'button --inactive'"
@@ -31,8 +31,8 @@
       <div>
         <div class="mx-auto contributor" max-width="344">
           <v-card-text>
-            <div class="text-h6 text--darken-6">Website Developers</div>
-            <div class="text--darken-4 pl-6">Members Here <br /></div>
+            <!-- <div class="text-h6 text--darken-6">Website Developers</div>
+            <div class="text--darken-4 pl-6">Members Here <br /></div> -->
           </v-card-text>
         </div>
       </div>
