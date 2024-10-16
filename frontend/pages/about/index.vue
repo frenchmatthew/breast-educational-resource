@@ -7,7 +7,7 @@
       :class="$vuetify.breakpoint.mdAndUp ? 'full-height' : ''"
     >
       <div class="pt-1 heading">
-        <h3 class="heading__main">Our Breast Biomechanics Research Team</h3>
+        <h3 class="heading__main">Our Team</h3>
       </div>
       <div class="detail">
         <!-- <img src="~assets/images/headshots.png" /> -->

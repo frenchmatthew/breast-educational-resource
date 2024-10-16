@@ -68,6 +68,9 @@ export default {
       }, 200);
     };
     this.$nuxt.$on("finishLoad", this.onFinishLoad);
+    setTimeout(() => {
+      this.loadApp = false;
+    }, 30000);
     document.addEventListener("fullscreenchange", () => {
       updateFullscreen();
     });
