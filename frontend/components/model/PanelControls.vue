@@ -31,6 +31,7 @@ export default {
       modelName: null,
       rightPanelText: {},
       mouseActions: null,
+      boundingBoxIndex: 0,
       modelUrlsArray:{
         normal: [
           "modelView/density-1/right/mri.nrrd",
@@ -53,28 +54,28 @@ export default {
           "modelView/density-4/right/mri_view.json",
         ],
         cyst: [
-        "modelView/density-4/right/mri.nrrd",
-        "modelView/density-4/right/mri_view.json",
+        "modelView/benign-cyst/right/mri.nrrd",
+        "modelView/benign-cyst/right/mri_view.json",
         ],
         fibroadenoma:[
-          "modelView/density-1/right/mri.nrrd",
-          "modelView/density-1/right/mri_view.json",
+          "modelView/benign-fib/right/mri.nrrd",
+          "modelView/benign-fib/right/mri_view.json",
         ],
         calcifications:[
           "modelView/density-1/right/mri.nrrd",
           "modelView/density-1/right/mri_view.json",
         ],
         dcis:[
-          "modelView/density-1/right/mri.nrrd",
-          "modelView/density-1/right/mri_view.json",
+          "modelView/cancer-dcis/right/mri.nrrd",
+          "modelView/cancer-dcis/right/mri_view.json",
         ],
         lobular:[
-          "modelView/density-1/right/mri.nrrd",
-          "modelView/density-1/right/mri_view.json",
+          "modelView/cancer-lobular/right/mri.nrrd",
+          "modelView/cancer-lobular/right/mri_view.json",
         ],
         ductal:[
-          "modelView/density-1/right/mri.nrrd",
-          "modelView/density-1/right/mri_view.json",
+          "modelView/cancer-ductal/right/mri.nrrd",
+          "modelView/cancer-ductal/right/mri_view.json",
         ]
       },
     };
@@ -94,10 +95,12 @@ export default {
     this.modelData = this.$modelData();
     this.container = this.$refs.rightContainer;
     this.rightPanelText = this.$rightPanelText();
+    
 
     this.container.appendChild(this.baseContainer);
     // Write code after mount this component
     this.modelName = this.$model().name;
+    this.boundingBoxIndex = this.$rightBoundingBoxIndex()[this.modelName];
     
     this.start();
 
@@ -146,6 +149,10 @@ export default {
             this.nrrdMaxIndex = nrrdSlices.z.MaxIndex;
             this.nrrdSliceZ = nrrdSlices.z;
 
+            if(this.boundingBoxIndex !== 0){
+              this.nrrdSliceZ.index = this.boundingBoxIndex * this.nrrdSliceZ.volume.spacing[2];
+              this.nrrdSliceZ.repaint.call(this.nrrdSliceZ);
+            }
             this.nrrdBias = new this.THREE.Vector3(x_bias, y_bias, z_bias);
             // bunding box
             const geometry = new this.THREE.BoxGeometry( nrrdRas[0], nrrdRas[1], nrrdRas[2] ); 

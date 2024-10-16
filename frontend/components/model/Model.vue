@@ -94,9 +94,9 @@ export default {
           "modelView/benign-cyst/middle/u_view.json",
         ],
         fibroadenoma:[
-          "modelView/density-1/middle/m3d.nrrd",
-          "modelView/density-1/middle/m_view.json",
-          "modelView/density-1/middle/m2d.nrrd"
+          "modelView/benign-fib/middle/m3d.nrrd",
+          "modelView/benign-fib/middle/m_view.json",
+          "modelView/benign-fib/middle/m2d.nrrd"
         ],
         calcifications:[
           "modelView/density-1/middle/m3d.nrrd",
@@ -104,19 +104,19 @@ export default {
           "modelView/density-1/middle/m2d.nrrd"
         ],
         dcis:[
-          "modelView/density-1/middle/m3d.nrrd",
-          "modelView/density-1/middle/m_view.json",
-          "modelView/density-1/middle/m2d.nrrd"
+          "modelView/cancer-dcis/middle/m3d.nrrd",
+          "modelView/cancer-dcis/middle/m_view.json",
+          "modelView/cancer-dcis/middle/m2d.nrrd"
         ],
         lobular:[
-          "modelView/density-1/middle/m3d.nrrd",
-          "modelView/density-1/middle/m_view.json",
-          "modelView/density-1/middle/m2d.nrrd"
+          "modelView/cancer-lobular/middle/m3d.nrrd",
+          "modelView/cancer-lobular/middle/m_view.json",
+          "modelView/cancer-lobular/middle/m2d.nrrd"
         ],
         ductal:[
-          "modelView/density-1/middle/m3d.nrrd",
-          "modelView/density-1/middle/m_view.json",
-          "modelView/density-1/middle/m2d.nrrd"
+          "modelView/cancer-ductal/middle/m3d.nrrd",
+          "modelView/cancer-ductal/middle/m_view.json",
+          "modelView/cancer-ductal/middle/m2d.nrrd"
         ]
       },
     };
