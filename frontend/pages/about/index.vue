@@ -12,8 +12,8 @@
       <div class="detail">
         <!-- <img src="~assets/images/headshots.png" /> -->
       </div>
-      <div class="detail">
-        <img src="~assets/images/team.jpg" />
+      <div class="detail my-auto p-2 rounded border shadow-md m-2">
+        <img src="~assets/images/team.png" />
       </div>
     </div>
   </div>
@@ -35,14 +35,20 @@ export default {
     },
   },
   created() {
-    this.$nuxt.$on("about-navigation", (componentName) => {
-      this.section = "team";
-    });
+    // this.$nuxt.$on("about-navigation", (componentName) => {
+    //   this.section = "team";
+    // });
     // this.$store.commit("setChartLoaded", "");
   },
 
+  mounted() {
+    setTimeout(() => {
+      this.$nuxt.$emit("finishLoad", true);
+    }, 1000);
+  },
+
   beforeDestroy() {
-    this.$nuxt.$off("about-navigation");
+    // this.$nuxt.$off("about-navigation");
   },
 };
 </script>

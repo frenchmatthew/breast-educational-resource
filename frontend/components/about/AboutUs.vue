@@ -46,8 +46,8 @@ export default {
 
   data() {
     return {
-      teamSelected: false,
-      researchSelected: true,
+      teamSelected: true,
+      researchSelected: false,
       select: "",
       items: ["latest", "version 2.0", "version 1.0"],
     };
