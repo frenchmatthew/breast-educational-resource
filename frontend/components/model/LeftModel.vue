@@ -117,8 +117,6 @@ export default {
     },
     onNavChange(modelName) {
       this.navPanelName = modelName;
-      console.log(modelName);
-      
       this.loadModel(this.modelUrlsArray[this.navPanelName][0], this.navPanelName+"left");
     },
     start() {

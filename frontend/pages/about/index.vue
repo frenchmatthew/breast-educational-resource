@@ -53,4 +53,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="@/assets/sass/pages/about.scss"></style>
+<style lang="scss" scoped src="@/assets/sass/pages/about.scss">
+
+</style>
