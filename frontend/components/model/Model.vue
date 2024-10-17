@@ -2,7 +2,7 @@
   <div class="model h-full relative">
       <v-tabs class="absolute  flex justify-center tab-main" @change="tabsOnChange">
         <v-tab class="tab-sub w-40">{{ tab1 }}</v-tab>
-        <v-tab class="tab-sub w-40">{{ tab2 }}</v-tab>
+        <v-tab v-show="tab2==='2D Ultrasound'? true : false" class="tab-sub w-40">{{ tab2 }}</v-tab>
       </v-tabs>
 
     <div class="hidden md:flex absolute w-full top-24 flex justify-center items-center text-gray-950 text-xs">
