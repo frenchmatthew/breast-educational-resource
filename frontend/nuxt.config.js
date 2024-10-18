@@ -173,6 +173,15 @@ export default {
     routes: [
       // Modify these routes, when you config your routes for app
       "/model-breast",
+      "/density-1",
+      "/density-2",
+      "/density-3",
+      "/density-4",
+      "/benign-cyst",
+      "/benign-fibroadenoma",
+      "/cancer-dcis",
+      "/cancer-lobular",
+      "/cancer-ductal",
     ],
   },
 };
