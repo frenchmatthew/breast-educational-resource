@@ -12,13 +12,13 @@
       ref="leftPanel"
     >
       <v-row class="flex" no-gutters>
-        <div class="pa-0 w-full" :class="mdAndUp ? 'full-height' : ''">
+        <div class="p-0 w-full" :class="mdAndUp ? 'full-height' : ''">
             <v-row class="d-flex flex-column" no-gutters>
               <v-col ref="panel" class="out-card">
                 <v-card
                   outlined
                   tile
-                  class="pa-0 transparent"
+                  class="p-0 transparent"
                   :class="mdAndUp ? 'panel-height' + multiplier : ''"
                 >
                   <left-pane :panel-height="panelHeight" />
