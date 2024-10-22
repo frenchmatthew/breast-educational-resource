@@ -10,7 +10,7 @@
       </div>
     </div>
     <div v-if="$route.name == 'about'">
-      <v-card class="pa-4 bg-secondary" :style="panelHeightStyle">
+      <v-card class="pa-4 bg-secondary">
         <lazy-about-us />
       </v-card>
     </div>
@@ -33,6 +33,7 @@ export default {
       return "bg-pink-success";
     },
     panelHeightStyle() {
+
       if (this.$vuetify.breakpoint.mdAndUp) {
         this.$nuxt.$emit("panel-height", this.panelHeight);
         return {

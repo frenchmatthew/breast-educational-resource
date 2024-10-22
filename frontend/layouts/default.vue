@@ -12,7 +12,7 @@
       ref="leftPanel"
     >
       <v-row class="flex" no-gutters>
-        <div class="pa-0 w-full" :class="mdAndUp ? 'full-height' : 'h-96'">
+        <div class="pa-0 w-full" :class="mdAndUp ? 'full-height' : ''">
             <v-row class="d-flex flex-column" no-gutters>
               <v-col ref="panel" class="out-card">
                 <v-card
