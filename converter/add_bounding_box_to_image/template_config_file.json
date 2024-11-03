@@ -1,0 +1,6 @@
+{"input_image": "input/dicom/directory", 
+"output_image": "output/nrrd_and_dicom/directory",
+"feature_centroid (world coordinates)": [0.0, 0.0, 0.0], 
+"feature_radius (voxels)": 10, 
+"line_thickness (voxels)": 2,  
+"box_colour":"colour in (white, black)"}

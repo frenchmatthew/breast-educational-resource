@@ -1,0 +1,4 @@
+SimpleITK==2.4.0
+nrrd==1.0.0 
+numpy
+pyvista
